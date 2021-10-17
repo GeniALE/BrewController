@@ -1,0 +1,52 @@
+overwrite: true
+schema: "http://localhost:5000/graphql"
+documents: "graphql/**/*.gql"
+generates:
+  src/generated/schema.ts:
+    plugins:
+      - add:
+          content: '// file generated! DO NOT TOUCH!'
+      - add:
+          content: '/* eslint-disable */'
+      - 'typescript'
+    config:
+      preResolveTypes: true
+      immutableTypes: true
+      maybeValue: T
+      namingConvention:
+        typeNames: change-case#pascalCase
+        enumValue: change-case#upperCase
+  src/generated/queries.ts:
+    preset: import-types
+    presetConfig:
+      typesPath: ./schema
+    plugins:
+      - add:
+          content: '// file generated! DO NOT TOUCH!'
+      - add:
+          content: '/* eslint-disable */'
+      - add:
+          content: '// @ts-nocheck'
+      - typescript-operations
+    config:
+      preResolveTypes: true
+      immutableTypes: true
+      namingConvention:
+        typeNames: change-case#pascalCase
+        enumValues: change-case#upperCase
+  src/generated/operations.ts:
+    plugins:
+      - add:
+          content: '// file generated! DO NOT TOUCH!'
+      - add:
+          content: '/* eslint-disable */'
+      - typescript-urql
+    config:
+      preResolveTypes: true
+      urqlImportFrom: '@urql/svelte'
+      dedupeOperationSuffix: true
+      withHooks: false
+      typesPrefix: Types.
+      namingConvention:
+        typeNames: change-case#pascalCase
+        enumValues: change-case#upperCase

@@ -1,0 +1,7 @@
+subscription GetLatestGaugeValue($gaugeId: String!) {
+  latestGaugeValue(gaugeId: $gaugeId) {
+    id
+    value
+    gaugeId
+  }
+}

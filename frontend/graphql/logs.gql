@@ -1,0 +1,19 @@
+query GetLogs {
+  logs {
+    id
+    type
+    message
+    date
+    time
+  }
+}
+
+subscription GetLatestLog {
+  latestLog {
+    id
+    message
+    type
+    date
+    time
+  }
+}
