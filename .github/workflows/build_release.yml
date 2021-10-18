@@ -82,11 +82,11 @@ jobs:
         tar xf artifacts/backend/backend.tar.gz -C release/brewcontroller-${{ env.RELEASE_VERSION }}
 
     - name: Archive artifacts
-      run: tar -czvf brewcontroller-${{ env.RELEASE_VERSION }}.tar.gz -C release brewcontroller-${{ env.RELEASE_VERSION }}
+      run: tar -czvf brewcontroller.tar.gz -C release brewcontroller-${{ env.RELEASE_VERSION }}
 
     - name: Upload release artifacts
       uses: softprops/action-gh-release@v1
       with:
-        files: brewcontroller-${{ env.RELEASE_VERSION }}.tar.gz
+        files: brewcontroller.tar.gz
 
 
