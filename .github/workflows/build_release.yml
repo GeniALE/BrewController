@@ -47,7 +47,7 @@ jobs:
           npm run build
           mkdir ${{ github.workspace }}/release
           mkdir ${{ github.workspace }}/release/frontend
-          cp ./public ${{ github.workspace }}/release/frontend
+          cp -r ./public ${{ github.workspace }}/release/frontend
 
       - name: Archive artifacts
         run: tar -czvf ${{ github.workspace }}/frontend.tar.gz -C ${{ github.workspace }}/release frontend
