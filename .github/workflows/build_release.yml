@@ -45,8 +45,7 @@ jobs:
       - name: Build artifacts
         run: |
           npm run build
-          mkdir ${{ github.workspace }}/release
-          mkdir ${{ github.workspace }}/release/frontend
+          mkdir -p ${{ github.workspace }}/release/frontend
           cp -r ./public ${{ github.workspace }}/release/frontend
 
       - name: Archive artifacts
@@ -70,15 +69,20 @@ jobs:
     - name: Setup
       run: |
         mkdir artifacts
-        mkdir artifacts/brewcontroller-${{ env.RELEASE_VERSION }}
+        mkdir -p release/brewcontroller-${{ env.RELEASE_VERSION }}
 
     - name: Download artifacts
       uses: actions/download-artifact@v2
       with:
-        path: artifacts/brewcontroller-${{ env.RELEASE_VERSION }}
+        path: artifacts
+
+    - name: Deflate artifacts
+      run: |
+        tar xf artifacts/frontend.tar.gz -C release/brewcontroller-${{ env.RELEASE_VERSION }}
+        tar xf artifacts/backend.tar.gz -C release/brewcontroller-${{ env.RELEASE_VERSION }}
 
     - name: Archive artifacts
-      run: tar -czvf brewcontroller-${{ env.RELEASE_VERSION }}.tar.gz -C . artifacts
+      run: tar -czvf brewcontroller-${{ env.RELEASE_VERSION }}.tar.gz -C release brewcontroller-${{ env.RELEASE_VERSION }}
 
     - name: Upload release artifacts
       uses: softprops/action-gh-release@v1
