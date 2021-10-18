@@ -78,8 +78,8 @@ jobs:
 
     - name: Deflate artifacts
       run: |
-        tar xf artifacts/frontend.tar.gz -C release/brewcontroller-${{ env.RELEASE_VERSION }}
-        tar xf artifacts/backend.tar.gz -C release/brewcontroller-${{ env.RELEASE_VERSION }}
+        tar xf artifacts/frontend/frontend.tar.gz -C release/brewcontroller-${{ env.RELEASE_VERSION }}
+        tar xf artifacts/backend/backend.tar.gz -C release/brewcontroller-${{ env.RELEASE_VERSION }}
 
     - name: Archive artifacts
       run: tar -czvf brewcontroller-${{ env.RELEASE_VERSION }}.tar.gz -C release brewcontroller-${{ env.RELEASE_VERSION }}
