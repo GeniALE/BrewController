@@ -6,6 +6,8 @@ The BrewController project offers a user interface in order to preview the curre
 
 It can also control the various controllers onboard with a clean user interface usable with a computer or a tablet.
 
+## Table of Content
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
