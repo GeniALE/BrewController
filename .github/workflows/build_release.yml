@@ -24,7 +24,7 @@ jobs:
         run: tar -czvf ${{ github.workspace }}/backend.tar.gz -C ${{ github.workspace }}/release backend
 
       - name: Upload artifacts
-        uses: actions/action-gh-release@v1
+        uses: actions/upload-artifact@v2
         with:
           name: backend
           if-no-files-found: error
@@ -53,7 +53,7 @@ jobs:
         run: tar -czvf ${{ github.workspace }}/frontend.tar.gz -C ${{ github.workspace }}/release frontend
 
       - name: Upload artifacts
-        uses: actions/action-gh-release@v1
+        uses: actions/upload-artifact@v2
         with:
           name: frontend
           if-no-files-found: error
