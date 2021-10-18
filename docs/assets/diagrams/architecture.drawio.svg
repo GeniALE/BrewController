@@ -1,0 +1,52 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="542px" height="202px" viewBox="-0.5 -0.5 542 202" content="&lt;mxfile&gt;&lt;diagram id=&quot;zIsYaqoRx5mWPE5Pectq&quot; name=&quot;Page-1&quot;&gt;7ZjLctowFIafhm3GsvCFZSBJu0hmMs2ia2EJW43sw0giQJ++UizbGJmECZA2M2WRwH+OLOk7F8se4Vm5+SbJsngAysQoDOhmhG9GYZigiflrhW0tIBSltZJLTp3WCU/8N3Ni4NQVp0z1HDWA0HzZFzOoKpbpnkakhHXfbQGiP+uS5MwTnjIifPUnp7qo1TQKOv0743nRzIwCZylJ4+wEVRAK6x0J347wTALo+lu5mTFh4TVc6nF3B6ztwiSr9DEDHHelt83eJKwqyqw5GOEpSF1ADhUR9wBLIyIj/mJab11UyEqDkQpdCmdVmkh9bSkbIRNEKZ418h0XjVs9MaMe6W7pTlKwkpnzwi7aRObMeY1bbCbfGJRMy61xkUwQzV/6Vycu8Hnr17ExXxyeYVQTD5Vd/JP7WUFl/k2/HL3ok+i5qV+IWLmLTkn2zCrqUV1ApRuqdqsLs+sZCJCvZrxYsDirkUh4ZjsWmkzmQdBamsoMW1wvTGq2eRuYj8INCBNXsq5phan7ve46ABo7rdip/kY7hd7Yo/cAVQ4303fp+Sz2eNKIpXQ8xDMN5ziOL0Qv+ER6kUfvB6Ncnc5ukWZsOBfnaTSOgsuww/Enskve7Hpdg7vt1H+8CcZ+E8QnNkE39BG4mbeLW7CX85Oof4l6VW7UXkjaZRwVpdjL8DtpkvkD7ZUh0xCSoZSexAkm8aXaa/wXuytCHqUvcWu/fAqP073WE+zhPl8KI/+E8DWjsttrUHj+SB2d1X5T8IDmBt/yYPW6xycyb9yDA5s+WNX7+dOW625ZhwNljc5S16FHYCrZ2igPJCu4yR8vwYQwz5Bs6NRpP0NtMXj9HN0E42Fe7/IIz8HDPwh5BHYqw26Fm4feezJn4hEU1xwqY5uD1lAaByJ4boXMbI8ZHFNhPe25Pn8tyyF+zUWv3Vhty3TgltI+GFu0lKiirXFjWdrFlpvcvl244qCSK25yVV0pU+m8ytWp0XAjUtRL3kns5S4eCBU+R6T8A///SB1/ekDIbzNnCtXInqyatzP1ba57x4Vv/wA=&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <path d="M 281 74.63 L 281 47.37" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 281 79.88 L 277.5 72.88 L 281 74.63 L 284.5 72.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 281 42.12 L 284.5 49.12 L 281 47.37 L 277.5 49.12 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 281 127.37 L 281 154.63" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 281 122.12 L 284.5 129.12 L 281 127.37 L 277.5 129.12 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 281 159.88 L 277.5 152.88 L 281 154.63 L 284.5 152.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="211" y="81" width="140" height="40" fill="#ffe6cc" stroke="#d79b00" stroke-width="2" pointer-events="all"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+            <text x="280.5" y="105.5">
+                Backend
+            </text>
+        </g>
+        <rect x="211" y="1" width="140" height="40" fill="#d5e8d4" stroke="#82b366" stroke-width="2" pointer-events="all"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+            <text x="280.5" y="25.5">
+                MongoDB
+            </text>
+        </g>
+        <rect x="211" y="161" width="140" height="40" fill="#f8cecc" stroke="#b85450" stroke-width="2" pointer-events="all"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+            <text x="280.5" y="185.5">
+                Redis
+            </text>
+        </g>
+        <path d="M 147.37 101 L 204.63 101" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 142.12 101 L 149.12 97.5 L 147.37 101 L 149.12 104.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 209.88 101 L 202.88 104.5 L 204.63 101 L 202.88 97.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="1" y="81" width="140" height="40" fill="#e1d5e7" stroke="#9673a6" stroke-width="2" pointer-events="all"/>
+        <g fill="#000000" font-family="Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
+            <text x="70.5" y="105.5">
+                Frontend
+            </text>
+        </g>
+        <path d="M 414.63 101 L 357.37 101" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 419.88 101 L 412.88 104.5 L 414.63 101 L 412.88 97.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 352.12 101 L 359.12 97.5 L 357.37 101 L 359.12 104.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 414.63 101 L 357.37 101" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 419.88 101 L 412.88 104.5 L 414.63 101 L 412.88 97.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 352.12 101 L 359.12 97.5 L 357.37 101 L 359.12 104.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+        <ellipse cx="481" cy="101" rx="60" ry="60" fill="#ffffff" stroke="#000000" pointer-events="none"/>
+        <g fill="#000000" font-family="Helvetica" pointer-events="none" text-anchor="middle" font-size="12px">
+            <text x="480.5" y="105.5">
+                Brew Machine
+            </text>
+        </g>
+        <path d="M 515.2 137 L 518.8 137 L 518.8 139.85 C 520.81 140.13 522.71 140.9 524.35 142.1 L 526.3 140.15 L 528.85 142.67 L 526.87 144.62 C 528.08 146.26 528.86 148.18 529.15 150.2 L 532 150.2 L 532 153.8 L 529.15 153.8 C 528.86 155.8 528.07 157.7 526.87 159.32 L 528.85 161.3 L 526.3 163.85 L 524.35 161.9 C 522.71 163.1 520.81 163.87 518.8 164.15 L 518.8 167 L 515.2 167 L 515.2 164.15 C 513.19 163.87 511.29 163.1 509.65 161.9 L 507.7 163.85 L 505.15 161.36 L 507.1 159.32 C 505.91 157.69 505.14 155.8 504.85 153.8 L 502 153.8 L 502 150.2 L 504.85 150.2 C 505.13 148.18 505.9 146.27 507.1 144.62 L 505.15 142.67 L 507.7 140.15 L 509.65 142.1 C 511.29 140.9 513.19 140.13 515.2 139.85 Z M 517 147.5 C 514.51 147.5 512.5 149.51 512.5 152 C 512.5 154.49 514.51 156.5 517 156.5 C 519.49 156.5 521.5 154.49 521.5 152 C 521.5 149.51 519.49 147.5 517 147.5 Z" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 494.2 151 L 497.8 151 L 497.8 153.85 C 499.81 154.13 501.71 154.9 503.35 156.1 L 505.3 154.15 L 507.85 156.67 L 505.87 158.62 C 507.08 160.26 507.86 162.18 508.15 164.2 L 511 164.2 L 511 167.8 L 508.15 167.8 C 507.86 169.8 507.07 171.7 505.87 173.32 L 507.85 175.3 L 505.3 177.85 L 503.35 175.9 C 501.71 177.1 499.81 177.87 497.8 178.15 L 497.8 181 L 494.2 181 L 494.2 178.15 C 492.19 177.87 490.29 177.1 488.65 175.9 L 486.7 177.85 L 484.15 175.36 L 486.1 173.32 C 484.91 171.69 484.14 169.8 483.85 167.8 L 481 167.8 L 481 164.2 L 483.85 164.2 C 484.13 162.18 484.9 160.27 486.1 158.62 L 484.15 156.67 L 486.7 154.15 L 488.65 156.1 C 490.29 154.9 492.19 154.13 494.2 153.85 Z M 496 161.5 C 493.51 161.5 491.5 163.51 491.5 166 C 491.5 168.49 493.51 170.5 496 170.5 C 498.49 170.5 500.5 168.49 500.5 166 C 500.5 163.51 498.49 161.5 496 161.5 Z" fill="#ffffff" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+    </g>
+</svg>
