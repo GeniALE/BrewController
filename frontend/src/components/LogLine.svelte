@@ -1,20 +1,17 @@
 <script lang="ts">
-  import type { LogType } from 'generated/schema'
+  import type { GetLatestLogSubscription } from 'generated/queries'
 
-  export let type: LogType
-  export let date: string
-  export let time: string
-  export let message: string
+  export let log: GetLatestLogSubscription['latestLog']
 </script>
 
 <div class="log-container">
   <span class="indicator"
-    class:update={type === 'UPDATE'}
-    class:info={type === 'INFO'}
-    class:error={type === 'ERROR'}>A</span>
-  <span class="datetime">{date}</span>
-  <span class="datetime">{time}</span>
-  <span class="message">{message}</span>
+    class:update={log.type === 'UPDATE'}
+    class:info={log.type === 'INFO'}
+    class:error={log.type === 'ERROR'}>A</span>
+  <span class="datetime">{log.date}</span>
+  <span class="datetime">{log.time}</span>
+  <span class="message">{log.message}</span>
 </div>
 
 <style lang="scss">

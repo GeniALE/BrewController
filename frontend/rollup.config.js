@@ -42,7 +42,7 @@ export default [
 	{
 		input: 'src/main.ts',
 		output: {
-			sourcemap: true,
+			sourcemap: !production,
 			format: 'iife',
 			name: 'app',
 			file: 'public/build/bundle.js'
@@ -50,7 +50,9 @@ export default [
 		plugins: [
 			svelte({
 				preprocess: [
-					sveltePreprocess({ sourceMap: !production }),
+					sveltePreprocess({
+						sourceMap: !production
+					}),
 				],
 				compilerOptions: {
 					// enable run-time checks when not in production

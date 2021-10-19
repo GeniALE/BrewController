@@ -1,4 +1,5 @@
 import 'sanitize.css'
+import 'svelte-material-ui/bare.css'
 
 import App from './App.svelte'
 

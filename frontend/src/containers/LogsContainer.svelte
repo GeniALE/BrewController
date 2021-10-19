@@ -24,13 +24,8 @@
     {:else if $logs.error}
       <span>{$logs.error.message}</span>
     {:else}
-      {#if $latestLogs.data}
-        {#each $latestLogs.data as log}
-          <LogLine {...log} />
-        {/each}
-      {/if}
-      {#each $logs.data.logs as log}
-        <LogLine {...log} />
+      {#each [...($latestLogs.data ?? []), ...$logs.data.logs] as log}
+        <LogLine {log} />
       {/each}
     {/if}
   </ScrollContainer>

@@ -1,6 +1,5 @@
 query GetLogs {
   logs {
-    id
     type
     message
     date
@@ -10,9 +9,8 @@ query GetLogs {
 
 subscription GetLatestLog {
   latestLog {
-    id
-    message
     type
+    message
     date
     time
   }

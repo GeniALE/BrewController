@@ -15,7 +15,6 @@ export const GetLatestGaugeValueDocument = gql`
 export const GetLogsDocument = gql`
     query GetLogs {
   logs {
-    id
     type
     message
     date
@@ -26,9 +25,8 @@ export const GetLogsDocument = gql`
 export const GetLatestLogDocument = gql`
     subscription GetLatestLog {
   latestLog {
-    id
-    message
     type
+    message
     date
     time
   }

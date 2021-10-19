@@ -1,8 +1,9 @@
 <script lang="ts">
   import Box from 'components/Box.svelte'
+  import { activeModal } from 'stores/activeModal'
 
   const openConfiguration = () => {
-    console.log('hello')
+    activeModal.set('configuration')
   }
 </script>
 

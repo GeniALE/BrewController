@@ -13,9 +13,9 @@ export type GetLatestGaugeValueSubscription = { readonly __typename?: 'Subscript
 export type GetLogsQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetLogsQuery = { readonly __typename?: 'Query', readonly logs: ReadonlyArray<{ readonly __typename?: 'Log', readonly id: string, readonly type: Types.LogType, readonly message: string, readonly date: string, readonly time: string }> };
+export type GetLogsQuery = { readonly __typename?: 'Query', readonly logs: ReadonlyArray<{ readonly __typename?: 'Log', readonly type: Types.LogType, readonly message: string, readonly date: string, readonly time: string }> };
 
 export type GetLatestLogSubscriptionVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetLatestLogSubscription = { readonly __typename?: 'Subscription', readonly latestLog: { readonly __typename?: 'Log', readonly id: string, readonly message: string, readonly type: Types.LogType, readonly date: string, readonly time: string } };
+export type GetLatestLogSubscription = { readonly __typename?: 'Subscription', readonly latestLog: { readonly __typename?: 'Log', readonly type: Types.LogType, readonly message: string, readonly date: string, readonly time: string } };

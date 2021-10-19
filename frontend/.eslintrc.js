@@ -33,6 +33,8 @@ module.exports = {
     'no-unused-vars': 'off',
     'eol-last': ['error', 'always'],
     'arrow-parens': ['error', 'always'],
+    'no-tabs': 'error',
+    'no-mixed-spaces-and-tabs': 'error',
     'indent': 'off',
     '@typescript-eslint/indent': [
       'error',

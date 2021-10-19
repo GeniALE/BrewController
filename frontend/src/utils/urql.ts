@@ -11,7 +11,7 @@ const client = createClient({
   exchanges: [
     ...defaultExchanges,
     subscriptionExchange({
-      // @ts-expect-error: in docs i guess
+      // @ts-expect-error: Copied from docs, don't know why there is an error here
       forwardSubscription: (operation) => wsClient.request(operation),
     }),
   ],
