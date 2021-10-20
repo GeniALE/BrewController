@@ -51,34 +51,51 @@ namespace BrewController
             app
                 .UseRouting()
                 .UseWebSockets()
-                .UseCors(builder =>
+                .UseEndpoints(endpoints =>
                 {
-                    if (env.IsDevelopment())
+                    endpoints.MapGraphQL()
+                        .WithOptions(new GraphQLServerOptions
+                            {
+                                Tool =
+                                {
+                                    Enable = env.IsDevelopment(),
+                                    DisableTelemetry = true,
+                                },
+                            });
+                });
+
+            if (env.IsDevelopment())
+            {
+                app
+                    .UseCors(builder =>
                     {
                         builder.AllowAnyOrigin()
                             .AllowAnyHeader()
                             .AllowAnyMethod();
-                    }
-                })
-                .UseEndpoints(endpoints =>
-                {
-                    endpoints.MapGraphQL()
-                        .WithOptions(new GraphQLServerOptions { Tool =
-                        {
-                            Enable = env.IsDevelopment(),
-                            DisableTelemetry = true,
-                        }, });
-                });
-
-            if (env.IsProduction())
-            {
-                app
-                    .UseFileServer(new FileServerOptions
-                    {
-                        FileProvider = new PhysicalFileProvider(Environment.GetEnvironmentVariable("BREW_APP_DIRECTORY")),
-                        RequestPath = "",
                     });
             }
+
+            if (!env.IsProduction())
+            {
+                return;
+            }
+
+            var appDir = Environment.GetEnvironmentVariable("BREW_APP_DIRECTORY");
+
+            if (appDir == null)
+            {
+                throw new Exception("Missing BREW_APP_DIRECTORY environment variable");
+            }
+
+            app
+                .UseEndpoints(endpoints =>
+                {
+                    endpoints.MapFallbackToFile("/index.html", new StaticFileOptions
+                    {
+                        FileProvider = new PhysicalFileProvider(appDir),
+                        RequestPath = "",
+                    });
+                });
         }
     }
 }

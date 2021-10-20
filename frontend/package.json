@@ -5,7 +5,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear -p 3000",
+    "start": "sirv public --single --no-clear -p 3000",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "gql-generate": "graphql-codegen --config codegen.yml"
   },
@@ -50,6 +50,7 @@
     "sirv-cli": "^1.0.14",
     "subscriptions-transport-ws": "^0.9.19",
     "svelte-material-ui": "^5.0.0-beta.7",
+    "svelte-navigator": "^3.1.5",
     "urql": "^2.0.5"
   }
 }

@@ -36,6 +36,7 @@ specifiers:
   svelte: ^3.43.1
   svelte-check: ^2.2.7
   svelte-material-ui: ^5.0.0-beta.7
+  svelte-navigator: ^3.1.5
   svelte-preprocess: ^4.9.8
   tslib: ^2.3.1
   typescript: ^4.4.3
@@ -50,6 +51,7 @@ dependencies:
   sirv-cli: 1.0.14
   subscriptions-transport-ws: 0.9.19_graphql@15.6.1
   svelte-material-ui: 5.0.0-beta.7_svelte@3.43.1+typescript@4.4.3
+  svelte-navigator: 3.1.5_svelte@3.43.1+typescript@4.4.3
   urql: 2.0.5_graphql@15.6.1
 
 devDependencies:
@@ -5451,6 +5453,17 @@ packages:
       - typescript
     dev: false
 
+  /svelte-navigator/3.1.5_svelte@3.43.1+typescript@4.4.3:
+    resolution: {integrity: sha512-CGTaexasSLpUaTSN2AlYqii0JeisIgg7uZbm8XCLKlpM9Qv3IltlJ7Nvh90Xw9ND97KqtGOjNJ3LNwMN1ABV0w==}
+    peerDependencies:
+      svelte: 3.x
+    dependencies:
+      svelte: 3.43.1
+      svelte2tsx: 0.1.193_svelte@3.43.1+typescript@4.4.3
+    transitivePeerDependencies:
+      - typescript
+    dev: false
+
   /svelte-preprocess/4.9.8_e4d174f1a3c6f6c9a7413fc1fdd258af:
     resolution: {integrity: sha512-EQS/oRZzMtYdAprppZxY3HcysKh11w54MgA63ybtL+TAZ4hVqYOnhw41JVJjWN9dhPnNjjLzvbZ2tMhTsla1Og==}
     engines: {node: '>= 9.11.2'}
@@ -5506,6 +5519,18 @@ packages:
   /svelte/3.43.1:
     resolution: {integrity: sha512-nvPIaKx4HLzYlSdquISZpgG1Kqr2VAWQjZOt3Iwm3UhbqmA0LnSx4k1YpRMEhjQYW3ZCqQoK8Egto9tv4YewMA==}
     engines: {node: '>= 8'}
+
+  /svelte2tsx/0.1.193_svelte@3.43.1+typescript@4.4.3:
+    resolution: {integrity: sha512-vzy4YQNYDnoqp2iZPnJy7kpPAY6y121L0HKrSBjU/IWW7DQ6T7RMJed2VVHFmVYm0zAGYMDl9urPc6R4DDUyhg==}
+    peerDependencies:
+      svelte: ^3.24
+      typescript: ^4.1.2
+    dependencies:
+      dedent-js: 1.0.1
+      pascal-case: 3.1.2
+      svelte: 3.43.1
+      typescript: 4.4.3
+    dev: false
 
   /svelte2tsx/0.4.7_svelte@3.43.1+typescript@4.4.3:
     resolution: {integrity: sha512-1HqRb8+I8H0Gli0+w8nTmyZgbtO/jJE3g27cNKYFyN0GMdpOh0CRmiWuMH1k9N2JugkviI7wqETanqJTR0SI+A==}

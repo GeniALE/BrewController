@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let size = 30
+  export let size = 24
   export let color = '#000000'
   export let path: string
 </script>
