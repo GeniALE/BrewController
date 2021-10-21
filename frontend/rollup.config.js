@@ -85,6 +85,7 @@ export default [
 					'containers',
 					'generated',
 					'modals',
+					'pages',
 					'stores',
 					'utils',
 				]),

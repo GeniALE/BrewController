@@ -48,6 +48,17 @@ namespace BrewController
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            if (env.IsDevelopment())
+            {
+                app
+                    .UseCors(builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            }
+
             app
                 .UseRouting()
                 .UseWebSockets()
@@ -63,17 +74,6 @@ namespace BrewController
                                 },
                             });
                 });
-
-            if (env.IsDevelopment())
-            {
-                app
-                    .UseCors(builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                            .AllowAnyHeader()
-                            .AllowAnyMethod();
-                    });
-            }
 
             if (!env.IsProduction())
             {

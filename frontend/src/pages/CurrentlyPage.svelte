@@ -1,14 +1,14 @@
 <script lang="ts">
-  import Box from 'components/Box.svelte'
   import ScrollContainer from 'components/ScrollContainer.svelte'
   import TextualButton from 'components/TextualButton.svelte'
+  import { Route } from 'svelte-navigator'
 
   const gotoCategoriesConfiguration = () => {
     console.log('hello')
   }
 </script>
 
-<Box title="Currently" area="currently">
+<Route path="/" primary={false}>
   <ScrollContainer>
     <div class="text-container">
       <TextualButton on:click={gotoCategoriesConfiguration}>
@@ -16,7 +16,7 @@
       </TextualButton>
     </div>
   </ScrollContainer>
-</Box>
+</Route>
 
 <style lang="scss">
   .text-container {

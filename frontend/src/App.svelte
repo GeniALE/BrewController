@@ -1,48 +1,41 @@
 <script>
-  import ActionsContainer from 'containers/ActionsContainer.svelte'
-  import CurrentlyContainer from 'containers/CurrentlyContainer.svelte'
-  import LogsContainer from 'containers/LogsContainer.svelte'
+  import CurrentlyPage from 'pages/CurrentlyPage.svelte'
+  import LogsPage from 'pages/LogsPage.svelte'
   import urqlClient from 'utils/urql'
   import { setClient } from '@urql/svelte'
   import ConfigurationModal from 'modals/configuration/ConfigurationModal.svelte'
-  import ControlPanelModal from 'modals/ControlPanelModal.svelte'
   import { Router, Route } from 'svelte-navigator'
-
-  const modals = {
-    configuration: ConfigurationModal,
-    controlPanel: ControlPanelModal,
-  }
+  import NavigationMenu from 'components/NavigationMenu.svelte'
 
   // setup the urql client
   setClient(urqlClient)
 </script>
 
 <Router>
-  <Route path="/">
+  <div class="container">
+    <NavigationMenu />
     <main>
-      <ActionsContainer />
-      <CurrentlyContainer />
-      <LogsContainer />
+      <CurrentlyPage />
+        <LogsPage />
+      <Route path="/charts" primary={false}>
+        <span>to come</span>
+      </Route>
+      <Route path="settings/*">
+        <ConfigurationModal />
+      </Route>
     </main>
-  </Route>
-  <Route path="configuration/*">
-    <ConfigurationModal />
-  </Route>
+  </div>
 </Router>
 
 <style lang="scss">
-  main {
+  .container {
     font-family: 'Roboto', sans-serif;
-    background: #bdbdbd;
     width: 100vw;
     height: 100vh;
-    display: grid;
-    column-gap: 1px;
-    row-gap: 1px;
-    grid-template-columns: 4fr 3.5fr 40%;
-    grid-template-rows: 3.5fr 1.5fr;
-    grid-template-areas:
-      'logs currently charts'
-      'side currently charts';
+    display: flex;
+  }
+
+  main {
+    flex-grow: 1;
   }
 </style>

@@ -15,6 +15,7 @@ specifiers:
   '@rollup/plugin-typescript': ^8.2.5
   '@smui/button': ^5.0.0-beta.7
   '@smui/dialog': ^5.0.0-beta.7
+  '@smui/drawer': ^5.0.0-beta.7
   '@smui/list': ^5.0.0-beta.7
   '@tsconfig/svelte': ^2.0.1
   '@typescript-eslint/eslint-plugin': ^5.0.0
@@ -68,6 +69,7 @@ devDependencies:
   '@rollup/plugin-typescript': 8.2.5_937b027edc6bd00c4da867df42fb955d
   '@smui/button': 5.0.0-beta.7_svelte@3.43.1+typescript@4.4.3
   '@smui/dialog': 5.0.0-beta.7_svelte@3.43.1+typescript@4.4.3
+  '@smui/drawer': 5.0.0-beta.7_svelte@3.43.1+typescript@4.4.3
   '@smui/list': 5.0.0-beta.7_svelte@3.43.1+typescript@4.4.3
   '@tsconfig/svelte': 2.0.1
   '@typescript-eslint/eslint-plugin': 5.0.0_23617e02451b63a8997d0f18b2622d8e
@@ -1346,7 +1348,6 @@ packages:
       '@material/theme': 11.0.0
       '@material/typography': 11.0.0
       tslib: 2.3.1
-    dev: false
 
   /@material/elevation/11.0.0:
     resolution: {integrity: sha512-mgrUSBAdXJ1+VS/SWnu/gr9/nq7P1q5X3aDmoom2EPKauEeKhuAHjABI5duxHOrliZM3mK9VLO56D/tszb7spw==}
@@ -2016,7 +2017,6 @@ packages:
     transitivePeerDependencies:
       - svelte
       - typescript
-    dev: false
 
   /@smui/fab/5.0.0-beta.7_svelte@3.43.1+typescript@4.4.3:
     resolution: {integrity: sha512-eRNS/naHzMpkj1N3hXdPvN9s0w9xLfXT6v5jQkAVCeWlJXMKJuAydP37zeU4BVgYxXDYzFCwpBgqB49khL9Lrw==}

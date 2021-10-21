@@ -36,6 +36,7 @@ module.exports = {
     'no-tabs': 'error',
     'no-mixed-spaces-and-tabs': 'error',
     'indent': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/indent': [
       'error',
       2,

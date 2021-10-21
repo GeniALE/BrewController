@@ -7,6 +7,7 @@
       "containers/*": ["containers/*"],
       "generated/*": ["generated/*"],
       "modals/*": ["modals/*"],
+      "pages/*": ["pages/*"],
       "stores/*": ["stores/*"],
       "utils/*": ["utils/*"],
     }

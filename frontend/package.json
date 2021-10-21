@@ -23,6 +23,7 @@
     "@rollup/plugin-typescript": "^8.2.5",
     "@smui/button": "^5.0.0-beta.7",
     "@smui/dialog": "^5.0.0-beta.7",
+    "@smui/drawer": "^5.0.0-beta.7",
     "@smui/list": "^5.0.0-beta.7",
     "@tsconfig/svelte": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
