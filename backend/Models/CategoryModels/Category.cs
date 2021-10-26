@@ -1,11 +1,10 @@
 // ReSharper disable UnusedMember.Global
 
+using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using BrewController.Models.SubcategoryModels;
-using BrewController.Utilities;
-using HotChocolate;
-using MongoDB.Driver;
+using BrewController.Models.GaugeModels;
+using BrewController.Models.TogglerModels;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace BrewController.Models.CategoryModels
 {
@@ -17,19 +16,12 @@ namespace BrewController.Models.CategoryModels
 
         public string Rank { get; set; } = null!;
 
-        public async Task<IEnumerable<Subcategory>> GetSubcategories([Service] IMongoDatabase database)
-        {
-            var filter = Builders<Subcategory>.Filter.Eq("CategoryId", this.Id);
-            var values = await database.GetSubcategoriesCollection().FindAsync(filter);
+        // todo: implement getter
+        [BsonIgnore]
+        public IEnumerable<Toggler> Togglers { get; set; } = Array.Empty<Toggler>();
 
-            if (values == null)
-            {
-                return new List<Subcategory>();
-            }
-
-            var subcategories = await values.ToListAsync();
-
-            return subcategories ?? new List<Subcategory>();
-        }
+        // todo: implement getter
+        [BsonIgnore]
+        public IEnumerable<Gauge> Gauges { get; set; } = Array.Empty<Gauge>();
     }
 }

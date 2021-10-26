@@ -14,7 +14,7 @@ namespace BrewController.Models.GaugeModels
 
         public bool Interactive { get; set; }
 
-        public string SubcategoryId { get; set; } = null!;
+        public string CategoryId { get; set; } = null!;
     }
 
     public partial class Gauge
@@ -27,7 +27,7 @@ namespace BrewController.Models.GaugeModels
             this.Type = addGauge.Type;
             this.Rank = addGauge.Rank;
             this.Interactive = addGauge.Interactive;
-            this.SubcategoryId = addGauge.SubcategoryId;
+            this.CategoryId = addGauge.CategoryId;
         }
     }
 }

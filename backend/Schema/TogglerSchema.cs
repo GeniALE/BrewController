@@ -11,10 +11,10 @@ namespace BrewController.Schema
 {
     public partial class Query
     {
-        public async Task<IEnumerable<Toggler>> GetTogglers(string? subcategoryId)
+        public async Task<IEnumerable<Toggler>> GetTogglers(string? CategoryId)
         {
-            var filter = subcategoryId != null
-                ? Builders<Toggler>.Filter.Eq("SubcategoryId", subcategoryId)
+            var filter = CategoryId != null
+                ? Builders<Toggler>.Filter.Eq("CategoryId", CategoryId)
                 : Builders<Toggler>.Filter.Empty;
 
             var result = await this._database.GetTogglersCollection().FindAsync(filter);

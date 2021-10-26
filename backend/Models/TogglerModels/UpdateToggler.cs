@@ -14,7 +14,7 @@ namespace BrewController.Models.TogglerModels
 
         public bool Interactive { get; set; }
 
-        public string SubcategoryId { get; set; } = null!;
+        public string CategoryId { get; set; } = null!;
     }
 
     public partial class Toggler
@@ -27,7 +27,7 @@ namespace BrewController.Models.TogglerModels
             this.Description = updateToggler.Description;
             this.Rank = updateToggler.Rank;
             this.Interactive = updateToggler.Interactive;
-            this.SubcategoryId = updateToggler.SubcategoryId;
+            this.CategoryId = updateToggler.CategoryId;
         }
     }
 }

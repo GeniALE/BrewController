@@ -11,10 +11,10 @@ namespace BrewController.Schema
 {
     public partial class Query
     {
-        public async Task<IEnumerable<Gauge>> GetGauges(string? subcategoryId)
+        public async Task<IEnumerable<Gauge>> GetGauges(string? CategoryId)
         {
-            var filter = subcategoryId != null
-                ? Builders<Gauge>.Filter.Eq("SubcategoryId", subcategoryId)
+            var filter = CategoryId != null
+                ? Builders<Gauge>.Filter.Eq("CategoryId", CategoryId)
                 : Builders<Gauge>.Filter.Empty;
 
             var result = await this._database.GetGaugesCollection().FindAsync(filter);

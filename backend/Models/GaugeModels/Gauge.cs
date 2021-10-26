@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BrewController.Models.CategoryModels;
 using BrewController.Models.GaugeValueModels;
-using BrewController.Models.SubcategoryModels;
 using BrewController.Utilities;
 using HotChocolate;
 using MongoDB.Bson;
@@ -27,10 +27,10 @@ namespace BrewController.Models.GaugeModels
         // references
 
         [BsonRepresentation(BsonType.ObjectId)]
-        public string SubcategoryId { get; set; } = null!;
+        public string CategoryId { get; set; } = null!;
 
-        public async Task<Subcategory> GetSubcategory([Service] IMongoDatabase database) =>
-            await database.GetSubcategoriesCollection().FindItemAsync(this.SubcategoryId);
+        public async Task<Category> GetCategory([Service] IMongoDatabase database) =>
+            await database.GetCategoriesCollection().FindItemAsync(this.CategoryId);
 
         public async Task<IEnumerable<GaugeValue>> GetValues([Service] IMongoDatabase database)
         {
