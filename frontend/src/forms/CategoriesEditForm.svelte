@@ -2,36 +2,52 @@
   import { mutation, operationStore, query } from '@urql/svelte'
   import { Button, ButtonSet, Form, FormGroup, TextInput, TextInputSkeleton } from 'carbon-components-svelte'
   import Title from 'components/Title.svelte'
-  import { GetCategoryByIdDocument, UpdateCategoryDocument } from 'generated/operations'
-  import type { GetCategoryByIdQuery, GetCategoryByIdQueryVariables, UpdateCategoryMutation, UpdateCategoryMutationVariables } from 'generated/queries'
-  import type { UpdateCategoryInput } from 'generated/schema'
+  import { AddNewCategoryDocument, GetCategoryByIdDocument, UpdateCategoryDocument } from 'generated/operations'
+  import type { AddNewCategoryMutation, AddNewCategoryMutationVariables, GetCategoryByIdQuery, GetCategoryByIdQueryVariables, UpdateCategoryMutation, UpdateCategoryMutationVariables } from 'generated/queries'
+  import type { AddCategoryInput, UpdateCategoryInput } from 'generated/schema'
   import { useNavigate } from 'svelte-navigator'
   import { isNullOrEmpty } from 'utils/isNullOrEmpty'
 
-  export let categoryId: string
+  export let categoryId: string | undefined
+  const isEditing = typeof categoryId !== 'undefined'
   let name: string
   let color: string
   let done = false
 
   const navigate = useNavigate()
 
-  const currentCategory = operationStore<GetCategoryByIdQuery, GetCategoryByIdQueryVariables>(GetCategoryByIdDocument, { id: categoryId })
+  const currentCategory = operationStore<GetCategoryByIdQuery, GetCategoryByIdQueryVariables>(GetCategoryByIdDocument, { id: categoryId }, { pause: !isEditing })
+
+  const addCategory = mutation<AddNewCategoryMutation, AddNewCategoryMutationVariables>({
+    query: AddNewCategoryDocument,
+  })
 
   const updateCategory = mutation<UpdateCategoryMutation, UpdateCategoryMutationVariables>({
     query: UpdateCategoryDocument,
   })
 
   const submit = async () => {
-    const updatedCategory: UpdateCategoryInput = {
-      id: categoryId,
-      name,
-      color,
-    }
-
     try {
-      await updateCategory({
-        updatedCategory,
-      })
+      if (isEditing) {
+        const updatedCategory: UpdateCategoryInput = {
+          id: categoryId,
+          name,
+          color,
+        }
+
+        await updateCategory({
+          updatedCategory,
+        })
+      } else {
+        const newCategory: AddCategoryInput = {
+          name,
+          color,
+        }
+
+        await addCategory({
+          newCategory,
+        })
+      }
 
       navigate('/settings/categories')
     } catch (error) {
@@ -39,7 +55,7 @@
     }
   }
 
-  $: if (!$currentCategory.fetching && $currentCategory.data && !done){
+  $: if (!$currentCategory.fetching && $currentCategory.data && !done && isEditing){
     name = $currentCategory.data.category.name
     color = $currentCategory.data.category.color
     done = true
@@ -48,7 +64,7 @@
   query(currentCategory)
 </script>
 
-<Title>Edit Category <span class="title-name">{name}</span></Title>
+<Title>{isEditing ? 'Edit' : 'Add'} Category <span class="title-name">{name}</span></Title>
 
 <Form on:submit={submit}>
   <FormGroup>

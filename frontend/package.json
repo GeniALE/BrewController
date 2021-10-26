@@ -24,6 +24,7 @@
     "@tsconfig/svelte": "^2.0.1",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
+    "@urql/devtools": "^2.0.3",
     "carbon-components-svelte": "^0.47.3",
     "eslint": "^8.0.0",
     "eslint-plugin-svelte3": "^3.2.1",

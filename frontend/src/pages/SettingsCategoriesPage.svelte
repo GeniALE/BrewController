@@ -1,6 +1,7 @@
 <script lang="ts">
   import { operationStore, query } from '@urql/svelte'
-  import { Button } from 'carbon-components-svelte'
+  import { Button, ClickableTile } from 'carbon-components-svelte'
+  import Title from 'components/Title.svelte'
   import { GetCategoriesDocument } from 'generated/operations'
   import type { GetCategoriesQuery, GetCategoriesQueryVariables } from 'generated/queries'
   import { useNavigate } from 'svelte-navigator'
@@ -12,14 +13,26 @@
   query(categories)
 </script>
 
-<h1>Categories</h1>
+<Title>Categories</Title>
+
 <Button on:click={() => navigate('edit')}>Add Category</Button>
 {#if $categories.fetching}
   <span>loading...</span>
 {:else if $categories.error}
   <span>{$categories.error.message}</span>
 {:else}
-  {#each $categories.data.categories as category}
-    <div on:click={() => navigate(`edit?id=${category.id}`)}>{category.name}</div>
-  {/each}
+  <div class="categories-list">
+    {#each $categories.data.categories as category}
+      <ClickableTile on:click={() => navigate(`edit?id=${category.id}`)}>{category.name}</ClickableTile>
+    {/each}
+  </div>
 {/if}
+
+<style lang="scss">
+  .categories-list {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+  }
+</style>
