@@ -12,7 +12,7 @@ namespace BrewController.Models.GaugeModels
 
         public GaugeType Type { get; set; }
 
-        public int Rank { get; set; }
+        public string Rank { get; set; } = null!;
 
         public bool Interactive { get; set; }
 

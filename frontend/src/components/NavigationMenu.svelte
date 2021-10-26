@@ -1,54 +1,38 @@
 <script lang="ts">
-  import Drawer, { Content } from '@smui/drawer'
-  import List, { Item, Text } from '@smui/list'
+  import { SideNav, SideNavItems, SideNavMenu, SideNavMenuItem as Item, SideNavLink } from 'carbon-components-svelte'
   import { useLocation, useNavigate } from 'svelte-navigator'
 
   const location = useLocation()
   const navigate = useNavigate()
-
-  const goto = (location: string) => () => navigate(location)
 </script>
 
-<Drawer>
-  <Content>
-    <List>
-      <Item on:click={goto('/')} activated={$location.pathname === '/'}>
-        <Text>Overview</Text>
+<SideNav isOpen>
+  <SideNavItems>
+    <SideNavLink on:click={() => navigate('/')} isSelected={$location.pathname === '/'} text="Overview" />
+    <SideNavLink on:click={() => navigate('/logs')} isSelected={$location.pathname === '/logs'} text="Logs" />
+    <SideNavLink on:click={() => navigate('/charts')} isSelected={$location.pathname === '/charts'} text="Charts" />
+    <SideNavMenu expanded={$location.pathname.startsWith('/settings')} text="Settings">
+      <Item on:click={() => navigate('/settings/gauges')} isSelected={$location.pathname === '/settings/gauges'}>
+        Gauges
       </Item>
-      <Item on:click={goto('/logs')} activated={$location.pathname === '/logs'}>
-        <Text>Logs</Text>
+      <Item on:click={() => navigate('/settings/togglers')} isSelected={$location.pathname === '/settings/togglers'}>
+        Togglers
       </Item>
-      <Item on:click={goto('/charts')} activated={$location.pathname === '/charts'}>
-        <Text>Charts</Text>
+      <Item on:click={() => navigate('/settings/categories')} isSelected={$location.pathname === '/settings/categories'}>
+        Categories
       </Item>
-      <Item on:click={goto('/settings')} activated={$location.pathname === '/settings'}>
-        <Text>Settings</Text>
+      <Item on:click={() => navigate('/settings/charts')} isSelected={$location.pathname === '/settings/charts'}>
+        Charts
       </Item>
-      {#if $location.pathname.startsWith('/settings')}
-        <div class="sub-list">
-          <Item on:click={goto('/settings/gauges')} activated={$location.pathname === '/settings/gauges'}>
-            <Text>Gauges</Text>
-          </Item>
-          <Item on:click={goto('/settings/togglers')} activated={$location.pathname === '/settings/togglers'}>
-            <Text>Togglers</Text>
-          </Item>
-          <Item on:click={goto('/settings/categories')} activated={$location.pathname === '/settings/categories'}>
-            <Text>Categories</Text>
-          </Item>
-          <Item on:click={goto('/settings/charts')} activated={$location.pathname === '/settings/charts'}>
-            <Text>Charts</Text>
-          </Item>
-          <Item on:click={goto('/settings/appearance')} activated={$location.pathname === '/settings/appearance'}>
-            <Text>Appearance</Text>
-          </Item>
-        </div>
-      {/if}
-    </List>
-  </Content>
-</Drawer>
+      <Item on:click={() => navigate('/settings/appearance')} isSelected={$location.pathname === '/settings/appearance'}>
+        Appearance
+      </Item>
+    </SideNavMenu>
+  </SideNavItems>
+</SideNav>
 
 <style lang="scss">
-  .sub-list {
-    margin-left: 25px;
+  :global(nav.bx--side-nav) {
+    position: static;
   }
 </style>

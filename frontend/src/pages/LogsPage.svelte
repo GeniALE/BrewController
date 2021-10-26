@@ -4,7 +4,6 @@
   import { operationStore, query, subscription, SubscriptionHandler } from '@urql/svelte'
   import { GetLatestLogDocument, GetLogsDocument } from 'generated/operations'
   import type { GetLatestGaugeValueSubscriptionVariables, GetLatestLogSubscription, GetLogsQuery, GetLogsQueryVariables } from 'generated/queries'
-  import { Route } from 'svelte-navigator'
 
   const logs = operationStore<GetLogsQuery, GetLogsQueryVariables>(GetLogsDocument)
   const latestLogs = operationStore<GetLatestLogSubscription, GetLatestGaugeValueSubscriptionVariables, GetLogsQuery['logs']>(GetLatestLogDocument)
@@ -17,16 +16,14 @@
   subscription(latestLogs, handleSubscription)
 </script>
 
-<Route path="/logs" primary={false}>
-  <ScrollContainer>
-    {#if $logs.fetching}
-      loading...
-    {:else if $logs.error}
-      <span>{$logs.error.message}</span>
-    {:else}
-      {#each [...($latestLogs.data ?? []), ...$logs.data.logs] as log}
-        <LogLine {log} />
-      {/each}
-    {/if}
-  </ScrollContainer>
-</Route>
+<ScrollContainer>
+  {#if $logs.fetching}
+    loading...
+  {:else if $logs.error}
+    <span>{$logs.error.message}</span>
+  {:else}
+    {#each [...($latestLogs.data ?? []), ...$logs.data.logs] as log}
+      <LogLine {log} />
+    {/each}
+  {/if}
+</ScrollContainer>

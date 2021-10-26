@@ -20,7 +20,7 @@ namespace BrewController.Models.TogglerModels
 
         public bool Interactive { get; set; }
 
-        public int Rank { get; set; }
+        public string Rank { get; set; } = null!;
 
         // references
 

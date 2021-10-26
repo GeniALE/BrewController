@@ -15,7 +15,7 @@ namespace BrewController.Models.CategoryModels
 
         public string Color { get; set; } = null!;
 
-        public int Rank { get; set; }
+        public string Rank { get; set; } = null!;
 
         public async Task<IEnumerable<Subcategory>> GetSubcategories([Service] IMongoDatabase database)
         {

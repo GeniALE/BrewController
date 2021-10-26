@@ -1,31 +1,54 @@
-<script>
+<script lang="ts">
   import CurrentlyPage from 'pages/CurrentlyPage.svelte'
   import LogsPage from 'pages/LogsPage.svelte'
   import urqlClient from 'utils/urql'
   import { setClient } from '@urql/svelte'
-  import ConfigurationModal from 'modals/configuration/ConfigurationModal.svelte'
   import { Router, Route } from 'svelte-navigator'
   import NavigationMenu from 'components/NavigationMenu.svelte'
+  import { Theme } from 'carbon-components-svelte'
+  import type { CarbonTheme } from 'carbon-components-svelte/types/Theme/Theme.svelte'
+  import SettingsGaugesPage from 'pages/SettingsGaugesPage.svelte'
+  import SettingsCategoriesPage from 'pages/SettingsCategoriesPage.svelte'
+  import SettingsCategoriesEditPage from 'pages/SettingsCategoriesEditPage.svelte'
 
   // setup the urql client
   setClient(urqlClient)
+
+  let theme: CarbonTheme = 'g10'
 </script>
 
-<Router>
-  <div class="container">
-    <NavigationMenu />
-    <main>
-      <CurrentlyPage />
-        <LogsPage />
-      <Route path="/charts" primary={false}>
-        <span>to come</span>
-      </Route>
-      <Route path="settings/*">
-        <ConfigurationModal />
-      </Route>
-    </main>
-  </div>
-</Router>
+<Theme bind:theme persist persistKey="__carbon-theme">
+  <Router primary={false}>
+    <div class="container">
+      <NavigationMenu />
+      <main>
+        <Route path="/">
+          <CurrentlyPage />
+        </Route>
+        <Route path="/logs">
+          <LogsPage />
+        </Route>
+        <Route path="/charts">
+          <span>to come</span>
+        </Route>
+        <Route path="/settings/*">
+          <Route path="gauges">
+            <SettingsGaugesPage />
+          </Route>
+          <Route path="categories">
+            <SettingsCategoriesPage />
+          </Route>
+          <Route path="categories/edit">
+            <SettingsCategoriesEditPage />
+          </Route>
+          <Route path="appearance">
+            <Theme bind:theme render="select" />
+          </Route>
+        </Route>
+      </main>
+    </div>
+  </Router>
+</Theme>
 
 <style lang="scss">
   .container {

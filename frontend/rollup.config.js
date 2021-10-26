@@ -82,7 +82,7 @@ export default [
 			alias({
 				entries: createAliases([
 					'components',
-					'containers',
+					"forms",
 					'generated',
 					'modals',
 					'pages',

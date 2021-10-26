@@ -3,6 +3,36 @@
 // @ts-nocheck
 import * as Types from './schema';
 
+export type GetCategoriesQueryVariables = Types.Exact<{ [key: string]: never; }>;
+
+
+export type GetCategoriesQuery = { readonly __typename?: 'Query', readonly categories: ReadonlyArray<{ readonly __typename?: 'Category', readonly id: string, readonly name: string, readonly color: string, readonly rank: string }> };
+
+export type GetCategoryByIdQueryVariables = Types.Exact<{
+  id: Types.Scalars['String'];
+}>;
+
+
+export type GetCategoryByIdQuery = { readonly __typename?: 'Query', readonly category: { readonly __typename?: 'Category', readonly name: string, readonly color: string, readonly rank: string } };
+
+export type AddNewCategoryMutationVariables = Types.Exact<{
+  newCategory: Types.AddCategoryInput;
+  previousCategoryId?: Types.Maybe<Types.Scalars['String']>;
+  nextCategoryId?: Types.Maybe<Types.Scalars['String']>;
+}>;
+
+
+export type AddNewCategoryMutation = { readonly __typename?: 'Mutation', readonly addCategory: { readonly __typename?: 'Category', readonly id: string } };
+
+export type UpdateCategoryMutationVariables = Types.Exact<{
+  updatedCategory: Types.UpdateCategoryInput;
+  previousCategoryId?: Types.Maybe<Types.Scalars['String']>;
+  nextCategoryId?: Types.Maybe<Types.Scalars['String']>;
+}>;
+
+
+export type UpdateCategoryMutation = { readonly __typename?: 'Mutation', readonly updateCategory: { readonly __typename?: 'Category', readonly id: string } };
+
 export type GetLatestGaugeValueSubscriptionVariables = Types.Exact<{
   gaugeId: Types.Scalars['String'];
 }>;

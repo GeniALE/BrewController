@@ -18,7 +18,6 @@ export type Scalars = {
 export type AddCategoryInput = {
   readonly color: Scalars['String'];
   readonly name: Scalars['String'];
-  readonly rank: Scalars['Int'];
 };
 
 export type AddGaugeInput = {
@@ -26,7 +25,7 @@ export type AddGaugeInput = {
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
   readonly physicalId: Scalars['String'];
-  readonly rank: Scalars['Int'];
+  readonly rank: Scalars['String'];
   readonly subcategoryId: Scalars['String'];
   readonly type: GaugeType;
 };
@@ -34,7 +33,7 @@ export type AddGaugeInput = {
 export type AddSubcategoryInput = {
   readonly categoryId: Scalars['String'];
   readonly name: Scalars['String'];
-  readonly rank: Scalars['Int'];
+  readonly rank: Scalars['String'];
 };
 
 export type AddTogglerInput = {
@@ -42,7 +41,7 @@ export type AddTogglerInput = {
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
   readonly physicalId: Scalars['String'];
-  readonly rank: Scalars['Int'];
+  readonly rank: Scalars['String'];
   readonly subcategoryId: Scalars['String'];
 };
 
@@ -51,7 +50,7 @@ export type Category = {
   readonly color: Scalars['String'];
   readonly id: Scalars['String'];
   readonly name: Scalars['String'];
-  readonly rank: Scalars['Int'];
+  readonly rank: Scalars['String'];
   readonly subcategories: ReadonlyArray<Subcategory>;
 };
 
@@ -62,7 +61,7 @@ export type Gauge = {
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
   readonly physicalId: Scalars['String'];
-  readonly rank: Scalars['Int'];
+  readonly rank: Scalars['String'];
   readonly subcategory: Subcategory;
   readonly subcategoryId: Scalars['String'];
   readonly type: GaugeType;
@@ -120,6 +119,8 @@ export type Mutation = {
 
 export type MutationAddCategoryArgs = {
   newCategory: AddCategoryInput;
+  nextCategoryId?: Maybe<Scalars['String']>;
+  previousCategoryId?: Maybe<Scalars['String']>;
 };
 
 
@@ -177,6 +178,8 @@ export type MutationDeleteTogglerArgs = {
 
 
 export type MutationUpdateCategoryArgs = {
+  nextCategoryId?: Maybe<Scalars['String']>;
+  previousCategoryId?: Maybe<Scalars['String']>;
   updatedCategory: UpdateCategoryInput;
 };
 
@@ -255,7 +258,7 @@ export type Subcategory = {
   readonly gauges: ReadonlyArray<Gauge>;
   readonly id: Scalars['String'];
   readonly name: Scalars['String'];
-  readonly rank: Scalars['Int'];
+  readonly rank: Scalars['String'];
   readonly togglers: ReadonlyArray<Toggler>;
 };
 
@@ -283,7 +286,7 @@ export type Toggler = {
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
   readonly physicalId: Scalars['String'];
-  readonly rank: Scalars['Int'];
+  readonly rank: Scalars['String'];
   readonly subcategory: Subcategory;
   readonly subcategoryId: Scalars['String'];
   readonly values: ReadonlyArray<TogglerValue>;
@@ -304,10 +307,9 @@ export type TogglerValue = {
 };
 
 export type UpdateCategoryInput = {
-  readonly color: Scalars['String'];
+  readonly color?: Maybe<Scalars['String']>;
   readonly id: Scalars['String'];
-  readonly name: Scalars['String'];
-  readonly rank: Scalars['Int'];
+  readonly name?: Maybe<Scalars['String']>;
 };
 
 export type UpdateGaugeInput = {
@@ -316,7 +318,7 @@ export type UpdateGaugeInput = {
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
   readonly physicalId: Scalars['String'];
-  readonly rank: Scalars['Int'];
+  readonly rank: Scalars['String'];
   readonly subcategoryId: Scalars['String'];
   readonly type: GaugeType;
 };
@@ -325,7 +327,7 @@ export type UpdateSubcategoryInput = {
   readonly categoryId: Scalars['String'];
   readonly id: Scalars['String'];
   readonly name: Scalars['String'];
-  readonly rank: Scalars['Int'];
+  readonly rank: Scalars['String'];
 };
 
 export type UpdateTogglerInput = {
@@ -334,6 +336,6 @@ export type UpdateTogglerInput = {
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
   readonly physicalId: Scalars['String'];
-  readonly rank: Scalars['Int'];
+  readonly rank: Scalars['String'];
   readonly subcategoryId: Scalars['String'];
 };

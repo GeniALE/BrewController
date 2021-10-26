@@ -10,7 +10,7 @@ namespace BrewController.Models.TogglerModels
 
         public string Description { get; set; } = null!;
 
-        public int Rank { get; set; }
+        public string Rank { get; set; } = null!;
 
         public bool Interactive { get; set; }
 

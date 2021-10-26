@@ -1,0 +1,28 @@
+query GetCategories {
+  categories {
+    id
+    name
+    color
+    rank
+  }
+}
+
+query GetCategoryById($id: String!) {
+  category(categoryId: $id) {
+    name
+    color
+    rank
+  }
+}
+
+mutation AddNewCategory($newCategory: AddCategoryInput!, $previousCategoryId: String, $nextCategoryId: String) {
+  addCategory(newCategory: $newCategory, previousCategoryId: $previousCategoryId, nextCategoryId: $nextCategoryId) {
+    id
+  }
+}
+
+mutation UpdateCategory($updatedCategory: UpdateCategoryInput!, $previousCategoryId: String, $nextCategoryId: String) {
+  updateCategory(updatedCategory: $updatedCategory, previousCategoryId: $previousCategoryId, nextCategoryId: $nextCategoryId) {
+    id
+  }
+}

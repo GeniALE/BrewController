@@ -6,7 +6,7 @@ namespace BrewController.Models.SubcategoryModels
 
         public string Name { get; set; } = null!;
 
-        public int Rank { get; set; }
+        public string Rank { get; set; } = null!;
 
         public string CategoryId { get; set; } = null!;
     }

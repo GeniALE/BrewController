@@ -4,11 +4,9 @@ namespace BrewController.Models.CategoryModels
     {
         public string Id { get; set; } = null!;
 
-        public string Name { get; set; } = null!;
+        public string? Name { get; set; } = null!;
 
-        public string Color { get; set; } = null!;
-
-        public int Rank { get; set; }
+        public string? Color { get; set; } = null!;
     }
 
     public partial class Category
@@ -16,9 +14,8 @@ namespace BrewController.Models.CategoryModels
         public Category(UpdateCategory updateCategory)
         {
             this.Id = updateCategory.Id;
-            this.Name = updateCategory.Name;
-            this.Color = updateCategory.Color;
-            this.Rank = updateCategory.Rank;
+            this.Name = updateCategory.Name!;
+            this.Color = updateCategory.Color!;
         }
     }
 }
