@@ -4,7 +4,7 @@
 
 <style lang="scss">
   .scroll-container {
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 100%;
   }
 </style>

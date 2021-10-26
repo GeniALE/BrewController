@@ -60,5 +60,8 @@
 
   main {
     flex-grow: 1;
+    padding: 80px;
+    height: 100vh;
+    overflow-y: auto;
   }
 </style>

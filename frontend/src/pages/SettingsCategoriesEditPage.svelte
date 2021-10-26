@@ -1,8 +1,6 @@
 <script lang="ts">
-  import { mutation } from '@urql/svelte'
+  import CategoriesAddForm from 'forms/CategoriesAddForm.svelte'
   import CategoriesEditForm from 'forms/CategoriesEditForm.svelte'
-  import { AddNewCategoryDocument } from 'generated/operations'
-  import type { AddNewCategoryMutation, AddNewCategoryMutationVariables } from 'generated/queries'
   import { useLocation } from 'svelte-navigator'
   import parseQuery from 'utils/parseQuery'
 
@@ -13,12 +11,10 @@
 
   $: categoryId = parseQuery($location.search)['id']
   $: isEditing = typeof categoryId === 'string'
-
-  const addCategory = mutation<AddNewCategoryMutation, AddNewCategoryMutationVariables>({
-    query: AddNewCategoryDocument,
-  })
 </script>
 
 {#if isEditing}
   <CategoriesEditForm {categoryId} />
+{:else}
+  <CategoriesAddForm />
 {/if}

@@ -34,5 +34,10 @@
 <style lang="scss">
   :global(nav.bx--side-nav) {
     position: static;
+    border-right: 1px solid #e0e0e0;
+  }
+
+  :global(li.bx--side-nav__item) {
+    cursor: pointer;
   }
 </style>

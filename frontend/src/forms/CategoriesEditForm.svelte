@@ -1,10 +1,12 @@
 <script lang="ts">
   import { mutation, operationStore, query } from '@urql/svelte'
   import { Button, ButtonSet, Form, FormGroup, TextInput, TextInputSkeleton } from 'carbon-components-svelte'
+  import Title from 'components/Title.svelte'
   import { GetCategoryByIdDocument, UpdateCategoryDocument } from 'generated/operations'
   import type { GetCategoryByIdQuery, GetCategoryByIdQueryVariables, UpdateCategoryMutation, UpdateCategoryMutationVariables } from 'generated/queries'
   import type { UpdateCategoryInput } from 'generated/schema'
   import { useNavigate } from 'svelte-navigator'
+  import { isNullOrEmpty } from 'utils/isNullOrEmpty'
 
   export let categoryId: string
   let name: string
@@ -46,7 +48,8 @@
   query(currentCategory)
 </script>
 
-<h1>Edit Category <span class="title-name">{name}</span></h1>
+<Title>Edit Category <span class="title-name">{name}</span></Title>
+
 <Form on:submit={submit}>
   <FormGroup>
     {#if $currentCategory.fetching}
@@ -64,12 +67,6 @@
   </FormGroup>
   <ButtonSet>
     <Button kind="secondary" on:click={() => navigate('/settings/categories')}>Cancel</Button>
-    <Button type="submit">Submit</Button>
+    <Button type="submit" disabled={[name, color].some(isNullOrEmpty)}>Submit</Button>
   </ButtonSet>
 </Form>
-
-<style lang="scss">
-  .title-name {
-    font-style: italic;
-  }
-</style>

@@ -1,5 +1,4 @@
 <script lang="ts">
-  import ScrollContainer from 'components/ScrollContainer.svelte'
   import TextualButton from 'components/TextualButton.svelte'
 
   const gotoCategoriesConfiguration = () => {
@@ -7,13 +6,11 @@
   }
 </script>
 
-<ScrollContainer>
-  <div class="text-container">
-    <TextualButton on:click={gotoCategoriesConfiguration}>
-      There are no categories set, click here to add some
-    </TextualButton>
-  </div>
-</ScrollContainer>
+<div class="text-container">
+  <TextualButton on:click={gotoCategoriesConfiguration}>
+    There are no categories set, click here to add some
+  </TextualButton>
+</div>
 
 <style lang="scss">
   .text-container {
