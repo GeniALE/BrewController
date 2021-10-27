@@ -10,7 +10,7 @@ using MongoDB.Driver;
 
 namespace BrewController.Models.TogglerModels
 {
-    public partial class Toggler : MongoCollectionItem
+    public partial class Toggler : RankedMongoCollectionItem
     {
         public string PhysicalId { get; set; } = null!;
 
@@ -19,8 +19,6 @@ namespace BrewController.Models.TogglerModels
         public string Description { get; set; } = null!;
 
         public bool Interactive { get; set; }
-
-        public string Rank { get; set; } = null!;
 
         // references
 

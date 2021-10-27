@@ -27,13 +27,10 @@ namespace BrewController.Schema
 
     public partial class Mutation
     {
-        public async Task<Category> AddCategory(AddCategory newCategory, string? previousCategoryId, string? nextCategoryId)
+        public async Task<Category> AddCategory(AddCategory newCategory, Ranking ranking)
         {
             var category = new Category(newCategory);
-
-            var previousCategory = previousCategoryId != null ? await this._database.GetCategoriesCollection().FindItemAsync(previousCategoryId) : null;
-            var nextCategory = nextCategoryId != null ? await this._database.GetCategoriesCollection().FindItemAsync(nextCategoryId) : null;
-            category.Rank = Rank.Generate(previousCategory?.Rank, nextCategory?.Rank);
+            await ranking.UpdateModelRank(category, this._database.GetCategoriesCollection());
 
             await this._database.GetCategoriesCollection().InsertOneAsync(category);
             await this._brewLogger.AddUpdateLog($"New category added: {category.Name}");
@@ -41,15 +38,12 @@ namespace BrewController.Schema
             return category;
         }
 
-        public async Task<Category> UpdateCategory(UpdateCategory updatedCategory, string? previousCategoryId, string? nextCategoryId)
+        public async Task<Category> UpdateCategory(UpdateCategory updatedCategory, Ranking? ranking)
         {
             var category = new Category(updatedCategory);
-
-            if (previousCategoryId != null || nextCategoryId != null)
+            if (ranking != null)
             {
-                var previousCategory = previousCategoryId != null ? await this._database.GetCategoriesCollection().FindItemAsync(previousCategoryId) : null;
-                var nextCategory = nextCategoryId != null ? await this._database.GetCategoriesCollection().FindItemAsync(nextCategoryId) : null;
-                category.Rank = Rank.Generate(previousCategory?.Rank, nextCategory?.Rank);
+                await ranking.UpdateModelRank(category, this._database.GetCategoriesCollection());
             }
 
             await this._database.GetCategoriesCollection().UpdateItemAsync(category);

@@ -8,13 +8,11 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace BrewController.Models.CategoryModels
 {
-    public partial class Category : MongoCollectionItem
+    public partial class Category : RankedMongoCollectionItem
     {
         public string Name { get; set; } = null!;
 
         public string Color { get; set; } = null!;
-
-        public string Rank { get; set; } = null!;
 
         // todo: implement getter
         [BsonIgnore]

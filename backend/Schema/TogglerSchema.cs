@@ -11,10 +11,10 @@ namespace BrewController.Schema
 {
     public partial class Query
     {
-        public async Task<IEnumerable<Toggler>> GetTogglers(string? CategoryId)
+        public async Task<IEnumerable<Toggler>> GetTogglers(string? categoryId)
         {
-            var filter = CategoryId != null
-                ? Builders<Toggler>.Filter.Eq("CategoryId", CategoryId)
+            var filter = categoryId != null
+                ? Builders<Toggler>.Filter.Eq("CategoryId", categoryId)
                 : Builders<Toggler>.Filter.Empty;
 
             var result = await this._database.GetTogglersCollection().FindAsync(filter);
@@ -28,18 +28,25 @@ namespace BrewController.Schema
 
     public partial class Mutation
     {
-        public async Task<Toggler> AddToggler(AddToggler newToggler)
+        public async Task<Toggler> AddToggler(AddToggler newToggler, Ranking ranking)
         {
             var toggler = new Toggler(newToggler);
+            await ranking.UpdateModelRank(toggler, this._database.GetTogglersCollection());
+
             await this._database.GetTogglersCollection().InsertOneAsync(toggler);
             await this._brewLogger.AddUpdateLog($"New toggler added: {toggler.Name}");
 
             return toggler;
         }
 
-        public async Task<Toggler> UpdateToggler(UpdateToggler updatedToggler)
+        public async Task<Toggler> UpdateToggler(UpdateToggler updatedToggler, Ranking? ranking)
         {
             var toggler = new Toggler(updatedToggler);
+            if (ranking != null)
+            {
+                await ranking.UpdateModelRank(toggler, this._database.GetTogglersCollection());
+            }
+
             await this._database.GetTogglersCollection().UpdateItemAsync(toggler);
             await this._brewLogger.AddUpdateLog($"Toggler updated: {toggler.Name}");
 

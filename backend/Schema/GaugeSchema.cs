@@ -11,10 +11,10 @@ namespace BrewController.Schema
 {
     public partial class Query
     {
-        public async Task<IEnumerable<Gauge>> GetGauges(string? CategoryId)
+        public async Task<IEnumerable<Gauge>> GetGauges(string? categoryId)
         {
-            var filter = CategoryId != null
-                ? Builders<Gauge>.Filter.Eq("CategoryId", CategoryId)
+            var filter = categoryId != null
+                ? Builders<Gauge>.Filter.Eq("CategoryId", categoryId)
                 : Builders<Gauge>.Filter.Empty;
 
             var result = await this._database.GetGaugesCollection().FindAsync(filter);
@@ -28,18 +28,25 @@ namespace BrewController.Schema
 
     public partial class Mutation
     {
-        public async Task<Gauge> AddGauge(AddGauge newGauge)
+        public async Task<Gauge> AddGauge(AddGauge newGauge, Ranking ranking)
         {
             var gauge = new Gauge(newGauge);
+            await ranking.UpdateModelRank(gauge, this._database.GetGaugesCollection());
+
             await this._database.GetGaugesCollection().InsertOneAsync(gauge);
             await this._brewLogger.AddUpdateLog($"New gauge added: {gauge.Name}");
 
             return gauge;
         }
 
-        public async Task<Gauge> UpdateGauge(UpdateGauge updatedGauge)
+        public async Task<Gauge> UpdateGauge(UpdateGauge updatedGauge, Ranking? ranking)
         {
             var gauge = new Gauge(updatedGauge);
+            if (ranking != null)
+            {
+                await ranking.UpdateModelRank(gauge, this._database.GetGaugesCollection());
+            }
+
             await this._database.GetGaugesCollection().UpdateItemAsync(gauge);
             await this._brewLogger.AddUpdateLog($"Gauge updated: {gauge.Name}");
 

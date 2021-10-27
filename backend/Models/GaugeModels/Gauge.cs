@@ -10,7 +10,7 @@ using MongoDB.Driver;
 
 namespace BrewController.Models.GaugeModels
 {
-    public partial class Gauge : MongoCollectionItem
+    public partial class Gauge : RankedMongoCollectionItem
     {
         public string PhysicalId { get; set; } = null!;
 
@@ -19,8 +19,6 @@ namespace BrewController.Models.GaugeModels
         public string Description { get; set; } = null!;
 
         public GaugeType Type { get; set; }
-
-        public string Rank { get; set; } = null!;
 
         public bool Interactive { get; set; }
 
