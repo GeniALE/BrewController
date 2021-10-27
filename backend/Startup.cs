@@ -96,6 +96,11 @@ namespace BrewController
                         RequestPath = "",
                     });
                 });
+            app.UseFileServer(new FileServerOptions
+            {
+                FileProvider = new PhysicalFileProvider(appDir),
+                RequestPath = "",
+            });
         }
     }
 }
