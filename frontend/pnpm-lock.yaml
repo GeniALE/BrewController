@@ -14,6 +14,7 @@ specifiers:
   '@rollup/plugin-replace': ^3.0.0
   '@rollup/plugin-typescript': ^8.2.5
   '@tsconfig/svelte': ^2.0.1
+  '@types/sortablejs': ^1.10.7
   '@typescript-eslint/eslint-plugin': ^5.0.0
   '@typescript-eslint/parser': ^5.0.0
   '@urql/devtools': ^2.0.3
@@ -31,6 +32,7 @@ specifiers:
   sanitize.css: ^13.0.0
   sass: ^1.42.1
   sirv-cli: ^1.0.14
+  sortablejs: ^1.14.0
   subscriptions-transport-ws: ^0.9.19
   svelte: ^3.43.1
   svelte-check: ^2.2.7
@@ -47,6 +49,7 @@ dependencies:
   graphql-tag: 2.12.5_graphql@15.6.1
   sanitize.css: 13.0.0
   sirv-cli: 1.0.14
+  sortablejs: 1.14.0
   subscriptions-transport-ws: 0.9.19_graphql@15.6.1
   svelte-navigator: 3.1.5_svelte@3.43.1+typescript@4.4.3
   urql: 2.0.5_graphql@15.6.1
@@ -64,6 +67,7 @@ devDependencies:
   '@rollup/plugin-replace': 3.0.0_rollup@2.58.0
   '@rollup/plugin-typescript': 8.2.5_937b027edc6bd00c4da867df42fb955d
   '@tsconfig/svelte': 2.0.1
+  '@types/sortablejs': 1.10.7
   '@typescript-eslint/eslint-plugin': 5.0.0_23617e02451b63a8997d0f18b2622d8e
   '@typescript-eslint/parser': 5.0.0_eslint@8.0.0+typescript@4.4.3
   '@urql/devtools': 2.0.3_graphql@15.6.1
@@ -1386,6 +1390,10 @@ packages:
     resolution: {integrity: sha512-iZUcRrGuz/Tbg3loODpW7vrQJkUtpY2fFSf4ELqqkApcS2TkZ1msk7ie8iZPB86lDOP8QOTTmuvWjc5S0R9OjQ==}
     dependencies:
       '@types/node': 16.10.3
+    dev: true
+
+  /@types/sortablejs/1.10.7:
+    resolution: {integrity: sha512-lGCwwgpj8zW/ZmaueoPVSP7nnc9t8VqVWXS+ASX3eoUUENmiazv0rlXyTRludXzuX9ALjPsMqBu85TgJNWbTOg==}
     dev: true
 
   /@types/websocket/1.0.4:
@@ -4199,6 +4207,10 @@ packages:
       sander: 0.5.1
       sourcemap-codec: 1.4.8
     dev: true
+
+  /sortablejs/1.14.0:
+    resolution: {integrity: sha512-pBXvQCs5/33fdN1/39pPL0NZF20LeRbLQ5jtnheIPN9JQAaufGjKdWduZn4U7wCtVuzKhmRkI0DFYHYRbB2H1w==}
+    dev: false
 
   /source-map-support/0.5.20:
     resolution: {integrity: sha512-n1lZZ8Ve4ksRqizaBQgxXDgKwttHDhyfQjA6YZZn8+AroHbsIz+JjwxQDxbp+7y5OYCI8t1Yk7etjD9CRd2hIw==}

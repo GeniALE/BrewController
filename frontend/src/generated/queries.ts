@@ -17,8 +17,7 @@ export type GetCategoryByIdQuery = { readonly __typename?: 'Query', readonly cat
 
 export type AddNewCategoryMutationVariables = Types.Exact<{
   newCategory: Types.AddCategoryInput;
-  previousCategoryId?: Types.Maybe<Types.Scalars['String']>;
-  nextCategoryId?: Types.Maybe<Types.Scalars['String']>;
+  ranking: Types.RankingInput;
 }>;
 
 
@@ -26,8 +25,7 @@ export type AddNewCategoryMutation = { readonly __typename?: 'Mutation', readonl
 
 export type UpdateCategoryMutationVariables = Types.Exact<{
   updatedCategory: Types.UpdateCategoryInput;
-  previousCategoryId?: Types.Maybe<Types.Scalars['String']>;
-  nextCategoryId?: Types.Maybe<Types.Scalars['String']>;
+  ranking?: Types.Maybe<Types.RankingInput>;
 }>;
 
 

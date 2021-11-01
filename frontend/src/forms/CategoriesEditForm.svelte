@@ -1,9 +1,10 @@
 <script lang="ts">
   import { mutation, operationStore, query } from '@urql/svelte'
-  import { Button, ButtonSet, Form, FormGroup, TextInput, TextInputSkeleton } from 'carbon-components-svelte'
+  import { Button, ButtonSet, Form, FormGroup, SkeletonPlaceholder, TextInput, TextInputSkeleton } from 'carbon-components-svelte'
+  import RankInput, { RankItem } from 'components/RankInput.svelte'
   import Title from 'components/Title.svelte'
-  import { AddNewCategoryDocument, GetCategoryByIdDocument, UpdateCategoryDocument } from 'generated/operations'
-  import type { AddNewCategoryMutation, AddNewCategoryMutationVariables, GetCategoryByIdQuery, GetCategoryByIdQueryVariables, UpdateCategoryMutation, UpdateCategoryMutationVariables } from 'generated/queries'
+  import { AddNewCategoryDocument, GetCategoriesDocument, GetCategoryByIdDocument, UpdateCategoryDocument } from 'generated/operations'
+  import type { AddNewCategoryMutation, AddNewCategoryMutationVariables, GetCategoriesQuery, GetCategoriesQueryVariables, GetCategoryByIdQuery, GetCategoryByIdQueryVariables, UpdateCategoryMutation, UpdateCategoryMutationVariables } from 'generated/queries'
   import type { AddCategoryInput, UpdateCategoryInput } from 'generated/schema'
   import { useNavigate } from 'svelte-navigator'
   import { isNullOrEmpty } from 'utils/isNullOrEmpty'
@@ -17,6 +18,7 @@
   const navigate = useNavigate()
 
   const currentCategory = operationStore<GetCategoryByIdQuery, GetCategoryByIdQueryVariables>(GetCategoryByIdDocument, { id: categoryId }, { pause: !isEditing })
+  const categories = operationStore<GetCategoriesQuery, GetCategoriesQueryVariables>(GetCategoriesDocument)
 
   const addCategory = mutation<AddNewCategoryMutation, AddNewCategoryMutationVariables>({
     query: AddNewCategoryDocument,
@@ -25,6 +27,15 @@
   const updateCategory = mutation<UpdateCategoryMutation, UpdateCategoryMutationVariables>({
     query: UpdateCategoryDocument,
   })
+
+  const getItems = (categories: GetCategoriesQuery['categories']): RankItem[] => {
+    return categories.map((category) => {
+      return {
+        id: category.id,
+        value: category.name,
+      }
+    })
+  }
 
   const submit = async () => {
     try {
@@ -46,6 +57,7 @@
 
         await addCategory({
           newCategory,
+          ranking: {},
         })
       }
 
@@ -55,13 +67,14 @@
     }
   }
 
-  $: if (!$currentCategory.fetching && $currentCategory.data && !done && isEditing){
+  $: if (!$currentCategory.fetching && $currentCategory.data && !done && isEditing) {
     name = $currentCategory.data.category.name
     color = $currentCategory.data.category.color
     done = true
   }
 
   query(currentCategory)
+  query(categories)
 </script>
 
 <Title>{isEditing ? 'Edit' : 'Add'} Category <span class="title-name">{name}</span></Title>
@@ -81,6 +94,11 @@
       <TextInput size="xl" labelText="Color" bind:value={color} />
     {/if}
   </FormGroup>
+  {#if $categories.fetching}
+    <SkeletonPlaceholder />
+  {:else}
+    <RankInput items={getItems($categories.data.categories)} targetId={categoryId} />
+  {/if}
   <ButtonSet>
     <Button kind="secondary" on:click={() => navigate('/settings/categories')}>Cancel</Button>
     <Button type="submit" disabled={[name, color].some(isNullOrEmpty)}>Submit</Button>

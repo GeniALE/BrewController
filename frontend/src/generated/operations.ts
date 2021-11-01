@@ -23,23 +23,15 @@ export const GetCategoryByIdDocument = gql`
 }
     `;
 export const AddNewCategoryDocument = gql`
-    mutation AddNewCategory($newCategory: AddCategoryInput!, $previousCategoryId: String, $nextCategoryId: String) {
-  addCategory(
-    newCategory: $newCategory
-    previousCategoryId: $previousCategoryId
-    nextCategoryId: $nextCategoryId
-  ) {
+    mutation AddNewCategory($newCategory: AddCategoryInput!, $ranking: RankingInput!) {
+  addCategory(newCategory: $newCategory, ranking: $ranking) {
     id
   }
 }
     `;
 export const UpdateCategoryDocument = gql`
-    mutation UpdateCategory($updatedCategory: UpdateCategoryInput!, $previousCategoryId: String, $nextCategoryId: String) {
-  updateCategory(
-    updatedCategory: $updatedCategory
-    previousCategoryId: $previousCategoryId
-    nextCategoryId: $nextCategoryId
-  ) {
+    mutation UpdateCategory($updatedCategory: UpdateCategoryInput!, $ranking: RankingInput) {
+  updateCategory(updatedCategory: $updatedCategory, ranking: $ranking) {
     id
   }
 }

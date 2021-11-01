@@ -14,11 +14,12 @@ namespace BrewController.Schema
         public async Task<IEnumerable<Category>> GetCategories()
         {
             var filter = Builders<Category>.Filter.Empty;
-            var result = this._database.GetCategoriesCollection().Find(filter).SortBy(category => category.Rank);
 
-            var categories = await result.ToListAsync();
-
-            return categories;
+            return await this._database
+                .GetCategoriesCollection()
+                .Find(filter)
+                .SortBy(category => category.Rank)
+                .ToListAsync();
         }
 
         public async Task<Category> GetCategory(string categoryId) =>

@@ -5,7 +5,7 @@
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/bin/Debug/net5.0" />
     <option name="PASS_PARENT_ENVS" value="1" />
     <envs>
-      <env name="BREW_APP_DIRECTORY" value="$PROJECT_DIR$/app" />
+      <env name="BREW_APP_DIRECTORY" value="$PROJECT_DIR$/../frontend/public" />
     </envs>
     <option name="USE_EXTERNAL_CONSOLE" value="0" />
     <option name="USE_MONO" value="0" />
@@ -17,6 +17,13 @@
     <option name="PROJECT_KIND" value="DotNetCore" />
     <option name="PROJECT_TFM" value="net5.0" />
     <method v="2">
+      <option name="NpmBeforeRunTask" enabled="true">
+        <package-json value="$PROJECT_DIR$/../frontend/package.json" />
+        <command value="build" />
+        <node-interpreter value="project" />
+        <package-manager value="pnpm" />
+        <envs />
+      </option>
       <option name="Build" />
     </method>
   </configuration>

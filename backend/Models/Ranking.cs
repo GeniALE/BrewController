@@ -12,13 +12,10 @@ namespace BrewController.Models
 
         public async Task UpdateModelRank<T>(T item, IMongoCollection<T> collection) where T : RankedMongoCollectionItem
         {
-            if (this.PreviousId != null || this.NextId != null)
-            {
-                var previousItem = this.PreviousId != null ? await collection.FindItemAsync(this.PreviousId) : null;
-                var nextItem = this.NextId != null ? await collection.FindItemAsync(this.NextId) : null;
+            var previousItem = this.PreviousId != null ? await collection.FindItemAsync(this.PreviousId) : null;
+            var nextItem = this.NextId != null ? await collection.FindItemAsync(this.NextId) : null;
 
-                item.Rank = Rank.Generate(previousItem?.Rank, nextItem?.Rank);
-            }
+            item.Rank = Rank.Generate(previousItem?.Rank, nextItem?.Rank);
         }
     }
 }
