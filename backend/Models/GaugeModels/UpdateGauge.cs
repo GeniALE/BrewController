@@ -12,8 +12,6 @@ namespace BrewController.Models.GaugeModels
 
         public GaugeType Type { get; set; }
 
-        public string Rank { get; set; } = null!;
-
         public bool Interactive { get; set; }
 
         public string CategoryId { get; set; } = null!;
@@ -28,7 +26,6 @@ namespace BrewController.Models.GaugeModels
             this.Name = updateGauge.Name;
             this.Description = updateGauge.Description;
             this.Type = updateGauge.Type;
-            this.Rank = updateGauge.Rank;
             this.Interactive = updateGauge.Interactive;
             this.CategoryId = updateGauge.CategoryId;
         }

@@ -1,0 +1,37 @@
+query GetGauges {
+  gauges {
+    id
+    physicalId
+    name
+    description
+    type
+    rank
+    interactive
+    categoryId
+  }
+}
+
+query GetGaugeById($id: String!) {
+  gauge(gaugeId: $id) {
+    id
+    physicalId
+    name
+    description
+    type
+    rank
+    interactive
+    categoryId
+  }
+}
+
+mutation AddNewGauge($newGauge: AddGaugeInput!, $ranking: RankingInput!) {
+  addGauge(newGauge: $newGauge, ranking: $ranking) {
+    id
+  }
+}
+
+mutation UpdateGauge($updatedGauge: UpdateGaugeInput!, $ranking: RankingInput) {
+  updateGauge(updatedGauge: $updatedGauge, ranking: $ranking) {
+    id
+  }
+}

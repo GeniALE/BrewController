@@ -45,6 +45,48 @@ export const GetLatestGaugeValueDocument = gql`
   }
 }
     `;
+export const GetGaugesDocument = gql`
+    query GetGauges {
+  gauges {
+    id
+    physicalId
+    name
+    description
+    type
+    rank
+    interactive
+    categoryId
+  }
+}
+    `;
+export const GetGaugeByIdDocument = gql`
+    query GetGaugeById($id: String!) {
+  gauge(gaugeId: $id) {
+    id
+    physicalId
+    name
+    description
+    type
+    rank
+    interactive
+    categoryId
+  }
+}
+    `;
+export const AddNewGaugeDocument = gql`
+    mutation AddNewGauge($newGauge: AddGaugeInput!, $ranking: RankingInput!) {
+  addGauge(newGauge: $newGauge, ranking: $ranking) {
+    id
+  }
+}
+    `;
+export const UpdateGaugeDocument = gql`
+    mutation UpdateGauge($updatedGauge: UpdateGaugeInput!, $ranking: RankingInput) {
+  updateGauge(updatedGauge: $updatedGauge, ranking: $ranking) {
+    id
+  }
+}
+    `;
 export const GetLogsDocument = gql`
     query GetLogs {
   logs {

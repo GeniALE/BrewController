@@ -9,10 +9,8 @@
   const navigate = useNavigate()
 
   const categories = operationStore<GetCategoriesQuery, GetCategoriesQueryVariables>(GetCategoriesDocument)
-
   query(categories)
 </script>
-
 <Title>Categories</Title>
 
 <Button on:click={() => navigate('edit')}>Add Category</Button>

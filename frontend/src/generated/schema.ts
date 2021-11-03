@@ -26,7 +26,6 @@ export type AddGaugeInput = {
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
   readonly physicalId: Scalars['String'];
-  readonly rank: Scalars['String'];
   readonly type: GaugeType;
 };
 
@@ -36,7 +35,6 @@ export type AddTogglerInput = {
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
   readonly physicalId: Scalars['String'];
-  readonly rank: Scalars['String'];
 };
 
 export type Category = {
@@ -280,7 +278,6 @@ export type UpdateGaugeInput = {
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
   readonly physicalId: Scalars['String'];
-  readonly rank: Scalars['String'];
   readonly type: GaugeType;
 };
 
@@ -291,5 +288,4 @@ export type UpdateTogglerInput = {
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
   readonly physicalId: Scalars['String'];
-  readonly rank: Scalars['String'];
 };

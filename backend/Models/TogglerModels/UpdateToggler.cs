@@ -10,8 +10,6 @@ namespace BrewController.Models.TogglerModels
 
         public string Description { get; set; } = null!;
 
-        public string Rank { get; set; } = null!;
-
         public bool Interactive { get; set; }
 
         public string CategoryId { get; set; } = null!;
@@ -25,7 +23,6 @@ namespace BrewController.Models.TogglerModels
             this.PhysicalId = updateToggler.PhysicalId;
             this.Name = updateToggler.Name;
             this.Description = updateToggler.Description;
-            this.Rank = updateToggler.Rank;
             this.Interactive = updateToggler.Interactive;
             this.CategoryId = updateToggler.CategoryId;
         }
