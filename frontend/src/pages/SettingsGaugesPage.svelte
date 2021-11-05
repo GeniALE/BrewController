@@ -15,7 +15,15 @@
 
 <Title>Gauges</Title>
 
-<Button on:click={() => navigate('edit')}>Add Category</Button>
+<Button on:click={() => navigate('edit')}>Add Gauge</Button>
 {#if $gauges.fetching}
   <span>loading...</span>
-{/if }
+{:else if $gauges.error}
+  <span>{$gauges.error.message}</span>
+{:else}
+<div class="categories-list">
+  {#each $gauges.data.gauges as gauge}
+    <ClickableTile on:click={() => navigate(`edit?id=${gauge.id}`)}>{gauge.name}</ClickableTile>
+  {/each}
+</div>
+{/if}

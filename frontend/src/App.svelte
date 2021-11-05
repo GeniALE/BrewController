@@ -10,6 +10,7 @@
   import SettingsGaugesPage from 'pages/SettingsGaugesPage.svelte'
   import SettingsCategoriesPage from 'pages/SettingsCategoriesPage.svelte'
   import SettingsCategoriesEditPage from 'pages/SettingsCategoriesEditPage.svelte'
+  import SettingsGaugesEditPage from 'pages/SettingsGaugesEditPage.svelte'
 
   // setup the urql client
   setClient(urqlClient)
@@ -34,6 +35,9 @@
         <Route path="/settings/*">
           <Route path="gauges">
             <SettingsGaugesPage />
+          </Route>
+          <Route path="gauges/edit">
+            <SettingsGaugesEditPage />
           </Route>
           <Route path="categories">
             <SettingsCategoriesPage />
