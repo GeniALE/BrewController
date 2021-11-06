@@ -18,7 +18,6 @@ export const GetCategoryByIdDocument = gql`
   category(categoryId: $id) {
     name
     color
-    rank
   }
 }
     `;

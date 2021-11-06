@@ -19,6 +19,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.0.0
   '@urql/devtools': ^2.0.3
   '@urql/svelte': ^1.3.1
+  bezier-easing: ^2.1.0
   carbon-components-svelte: ^0.47.3
   eslint: ^8.0.0
   eslint-plugin-svelte3: ^3.2.1
@@ -45,6 +46,7 @@ specifiers:
 dependencies:
   '@mdi/js': 6.3.95
   '@urql/svelte': 1.3.1_graphql@15.6.1+svelte@3.43.1
+  bezier-easing: 2.1.0
   graphql: 15.6.1
   graphql-tag: 2.12.5_graphql@15.6.1
   sanitize.css: 13.0.0
@@ -1738,6 +1740,10 @@ packages:
   /base64-js/1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
     dev: true
+
+  /bezier-easing/2.1.0:
+    resolution: {integrity: sha1-wE3+i5JtbsrKGBPWn/F5t8ICXYY=}
+    dev: false
 
   /binary-extensions/2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}

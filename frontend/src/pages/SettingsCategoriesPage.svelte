@@ -1,6 +1,7 @@
 <script lang="ts">
   import { operationStore, query } from '@urql/svelte'
-  import { Button, ClickableTile } from 'carbon-components-svelte'
+  import { Button } from 'carbon-components-svelte'
+  import CategoryRankSwitcher from 'components/CategoryRankSwitcher.svelte'
   import Title from 'components/Title.svelte'
   import { GetCategoriesDocument } from 'generated/operations'
   import type { GetCategoriesQuery, GetCategoriesQueryVariables } from 'generated/queries'
@@ -20,9 +21,7 @@
   <span>{$categories.error.message}</span>
 {:else}
   <div class="categories-list">
-    {#each $categories.data.categories as category}
-      <ClickableTile on:click={() => navigate(`edit?id=${category.id}`)}>{category.name}</ClickableTile>
-    {/each}
+    <CategoryRankSwitcher categories={$categories.data.categories} />
   </div>
 {/if}
 

@@ -13,7 +13,7 @@ export type GetCategoryByIdQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetCategoryByIdQuery = { readonly __typename?: 'Query', readonly category: { readonly __typename?: 'Category', readonly name: string, readonly color: string, readonly rank: string } };
+export type GetCategoryByIdQuery = { readonly __typename?: 'Query', readonly category: { readonly __typename?: 'Category', readonly name: string, readonly color: string } };
 
 export type AddNewCategoryMutationVariables = Types.Exact<{
   newCategory: Types.AddCategoryInput;
