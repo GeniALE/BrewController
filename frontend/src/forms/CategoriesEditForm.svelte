@@ -95,7 +95,9 @@ import ColorPickerInput from 'components/ColorPickerInput.svelte'
       <Button kind="secondary" on:click={() => navigate('/settings/categories')}>Cancel</Button>
       <Button type="submit" disabled={[name, color].some(isNullOrEmpty)}>Submit</Button>
     </ButtonSet>
-    <Button kind="danger" iconDescription="Delete category" icon={Delete20} />
+    {#if isEditing}
+      <Button kind="danger" iconDescription="Delete category" icon={Delete20} />
+    {/if}
   </div>
 </Form>
 
