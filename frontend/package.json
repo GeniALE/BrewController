@@ -27,6 +27,8 @@
     "@typescript-eslint/parser": "^5.0.0",
     "@urql/devtools": "^2.0.3",
     "carbon-components-svelte": "^0.47.3",
+    "carbon-icons-svelte": "^10.38.0",
+    "carbon-preprocess-svelte": "^0.6.0",
     "eslint": "^8.0.0",
     "eslint-plugin-svelte3": "^3.2.1",
     "rollup": "^2.58.0",

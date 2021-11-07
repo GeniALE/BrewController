@@ -5,8 +5,10 @@
   import { AddNewCategoryDocument, GetCategoriesDocument, GetCategoryByIdDocument, UpdateCategoryDocument } from 'generated/operations'
   import type { AddNewCategoryMutation, AddNewCategoryMutationVariables, GetCategoriesQuery, GetCategoriesQueryVariables, GetCategoryByIdQuery, GetCategoryByIdQueryVariables, UpdateCategoryMutation, UpdateCategoryMutationVariables } from 'generated/queries'
   import type { AddCategoryInput, UpdateCategoryInput } from 'generated/schema'
+  import { Delete20 } from 'carbon-icons-svelte'
   import { useNavigate } from 'svelte-navigator'
   import { isNullOrEmpty } from 'utils/isNullOrEmpty'
+import ColorPickerInput from 'components/ColorPickerInput.svelte'
 
   export let categoryId: string | undefined
   const isEditing = typeof categoryId !== 'undefined'
@@ -85,11 +87,21 @@
     {#if $currentCategory.fetching}
       <TextInputSkeleton />
     {:else}
-      <TextInput size="xl" labelText="Color" bind:value={color} />
+      <ColorPickerInput bind:color={color} />
     {/if}
   </FormGroup>
-  <ButtonSet>
-    <Button kind="secondary" on:click={() => navigate('/settings/categories')}>Cancel</Button>
-    <Button type="submit" disabled={[name, color].some(isNullOrEmpty)}>Submit</Button>
-  </ButtonSet>
+  <div class="submit-buttons">
+    <ButtonSet>
+      <Button kind="secondary" on:click={() => navigate('/settings/categories')}>Cancel</Button>
+      <Button type="submit" disabled={[name, color].some(isNullOrEmpty)}>Submit</Button>
+    </ButtonSet>
+    <Button kind="danger" iconDescription="Delete category" icon={Delete20} />
+  </div>
 </Form>
+
+<style lang="scss">
+  .submit-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+</style>

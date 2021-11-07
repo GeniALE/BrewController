@@ -1,3 +1,5 @@
+import { optimizeCss as carbonOptimizeCss, optimizeImports as carbonOptimizeImports } from 'carbon-preprocess-svelte';
+
 import alias from '@rollup/plugin-alias'
 import commonjs from '@rollup/plugin-commonjs';
 import css from 'rollup-plugin-css-only';
@@ -53,6 +55,8 @@ export default [
 					sveltePreprocess({
 						sourceMap: !production
 					}),
+					carbonOptimizeImports(),
+					carbonOptimizeCss(),
 				],
 				compilerOptions: {
 					// enable run-time checks when not in production
