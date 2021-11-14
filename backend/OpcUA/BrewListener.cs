@@ -11,16 +11,34 @@ namespace BrewController.OpcUA
 {
     public class BrewListener : BackgroundService
     {
-        // private readonly BrewClient _brewClient;
-        //
-        // public BrewListener(BrewClient brewClient)
-        // {
-        //     this._brewClient = brewClient;
-        // }
+        private readonly BrewClient _brewClient;
+
+        public BrewListener(BrewClient brewClient)
+        {
+            this._brewClient = brewClient;
+        }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            // using var client = this._brewClient;
+            using var client = this._brewClient;
+            foreach (var node in client.BrowseNodes())
+            {
+                if (node != null)
+                {
+                    Console.WriteLine($"\\----------- {node.Name.Value} => {node.NodeId} ------------\\");
+                }
+            }
+            // var rootNode =
+            //     client.BrowseNode(
+            //         $"{Environment.GetEnvironmentVariable("BREW_OPCUA_SERVER_NAMESPACE") ?? "http://test.brewcontroller.server"};i=84");
+
+            // foreach (var node in rootNode.Children())
+            // {
+            //     if (node != null)
+            //     {
+            //         Console.WriteLine($"\\----------- {node.Name.Value} => {node.NodeId} ------------\\");
+            //     }
+            // }
             //
             // var rootNode = client.BrowseNode("ns=3;i=1009");
             //

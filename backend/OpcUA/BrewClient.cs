@@ -11,7 +11,7 @@ namespace BrewController.OpcUA
         private readonly ITopicEventSender _sender;
 
         public BrewClient(IMongoDatabase database, ITopicEventSender sender)
-            : base(Environment.GetEnvironmentVariable("BREW_OPCUA_SERVER_ADDRESS"))
+            : base(Environment.GetEnvironmentVariable("BREW_OPCUA_SERVER_ADDRESS") ?? "opc.tcp://localhost:4840")
         {
             this._database = database;
             this._sender = sender;

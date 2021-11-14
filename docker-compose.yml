@@ -19,6 +19,12 @@ services:
       - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
     environment:
       - REDIS_REPLICATION_MODE=master
+  uaserver:
+    build: ./uamock
+    ports:
+      - "4840:4840"
+    volumes:
+      - ./uamock/src:/app/src
 
 volumes:
   mongo:
