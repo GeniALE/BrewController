@@ -25,7 +25,7 @@ export type AddGaugeInput = {
   readonly description: Scalars['String'];
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
-  readonly physicalId: Scalars['String'];
+  readonly nodeId: Scalars['String'];
   readonly type: GaugeType;
 };
 
@@ -34,7 +34,7 @@ export type AddTogglerInput = {
   readonly description: Scalars['String'];
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
-  readonly physicalId: Scalars['String'];
+  readonly nodeId: Scalars['String'];
 };
 
 export type Category = {
@@ -55,7 +55,7 @@ export type Gauge = {
   readonly id: Scalars['String'];
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
-  readonly physicalId: Scalars['String'];
+  readonly nodeId: Scalars['String'];
   readonly rank: Scalars['String'];
   readonly type: GaugeType;
   readonly values: ReadonlyArray<GaugeValue>;
@@ -246,7 +246,7 @@ export type Toggler = {
   readonly id: Scalars['String'];
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
-  readonly physicalId: Scalars['String'];
+  readonly nodeId: Scalars['String'];
   readonly rank: Scalars['String'];
   readonly values: ReadonlyArray<TogglerValue>;
 };
@@ -277,7 +277,7 @@ export type UpdateGaugeInput = {
   readonly id: Scalars['String'];
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
-  readonly physicalId: Scalars['String'];
+  readonly nodeId: Scalars['String'];
   readonly type: GaugeType;
 };
 
@@ -287,5 +287,5 @@ export type UpdateTogglerInput = {
   readonly id: Scalars['String'];
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
-  readonly physicalId: Scalars['String'];
+  readonly nodeId: Scalars['String'];
 };

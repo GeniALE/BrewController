@@ -6,7 +6,6 @@
   import type { AddGaugeInput, UpdateGaugeInput } from 'generated/schema'
   import { GaugeType } from 'generated/schema'
   import { useNavigate } from 'svelte-navigator'
-  import type { RankItem } from 'components/RankInput.svelte'
   import Title from 'components/Title.svelte'
   import { Button, ButtonSet, Dropdown, DropdownSkeleton, Form, FormGroup, TextInput, TextInputSkeleton } from 'carbon-components-svelte'
   import { isNullOrEmpty } from 'utils/isNullOrEmpty'
@@ -19,7 +18,7 @@
   let interactive : boolean
   let categoryId : string
   let done = false
-  let physicalId : string
+  let nodeId : string
   let gaugeTypeIndex=0
   const gaugeTypeOptions = [
     { id: GaugeType.Temperature, text: 'Temperature' },
@@ -53,8 +52,8 @@
           description,
           type: gaugeTypeOptions[gaugeTypeIndex].id,
           interactive,
-          physicalId,
-          categoryId, 
+          nodeId,
+          categoryId,
         }
 
         await updateCategory({
@@ -66,7 +65,7 @@
           description,
           type: gaugeTypeOptions[gaugeTypeIndex].id,
           interactive,
-          physicalId,
+          nodeId,
           categoryId,
         }
 
@@ -89,9 +88,9 @@
     name = $currentGauge.data.gauge.name
     description = $currentGauge.data.gauge.description
     interactive = $currentGauge.data.gauge.interactive
-    physicalId = $currentGauge.data.gauge.physicalId
+    nodeId = $currentGauge.data.gauge.nodeId
     categoryId = $currentGauge.data.gauge.categoryId
-    gaugeTypeIndex = gaugeTypeDict[$currentGauge.data.gauge.type] 
+    gaugeTypeIndex = gaugeTypeDict[$currentGauge.data.gauge.type]
     done = true
   }
 
@@ -117,10 +116,10 @@
       <DropdownSkeleton />
     {:else}
       <TextInput size="xl" labelText="Description" bind:value={description} />
-      <TextInput size="xl" labelText="PhysicalId" bind:value={physicalId} />
+      <TextInput size="xl" labelText="nodeId" bind:value={nodeId} />
       <Dropdown size="xl" titleText="GaugeType" items={gaugeTypeOptions} bind:selectedIndex={gaugeTypeIndex} />
-      
-      
+
+
     {/if}
   </FormGroup>
   <ButtonSet>
@@ -130,7 +129,7 @@
 </Form>
 
 <!-- INPUT TODO -->
-<!-- 
+<!--
 type = $currentGauge.data.gauge.type
 categoryId = $currentGauge.data.gauge.categoryId
 

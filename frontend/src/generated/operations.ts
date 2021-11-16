@@ -48,7 +48,7 @@ export const GetGaugesDocument = gql`
     query GetGauges {
   gauges {
     id
-    physicalId
+    nodeId
     name
     description
     type
@@ -62,7 +62,7 @@ export const GetGaugeByIdDocument = gql`
     query GetGaugeById($id: String!) {
   gauge(gaugeId: $id) {
     id
-    physicalId
+    nodeId
     name
     description
     type

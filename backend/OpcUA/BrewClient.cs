@@ -45,8 +45,9 @@ namespace BrewController.OpcUA
                     var gaugeId = await this.CreateOrGetGauge(new Gauge
                     {
                         Interactive = isInteractive,
-                        NodeId = node.NodeId.ValueAsString,
+                        NodeId = node.NodeId.ToString(),
                         NodeName = node.DisplayName.Value,
+                        Rank = node.NodeId.ToString(),
                     });
                     return (gaugeId, "Gauge");
                 case DataTypes.Boolean:
@@ -55,6 +56,7 @@ namespace BrewController.OpcUA
                         Interactive = isInteractive,
                         NodeId = node.NodeId.ToString(),
                         NodeName = node.DisplayName.Value,
+                        Rank = node.NodeId.ToString(),
                     });
                     return (togglerId, "Toggler");
                 default:

@@ -41,14 +41,14 @@ export type GetLatestGaugeValueSubscription = { readonly __typename?: 'Subscript
 export type GetGaugesQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetGaugesQuery = { readonly __typename?: 'Query', readonly gauges: ReadonlyArray<{ readonly __typename?: 'Gauge', readonly id: string, readonly physicalId: string, readonly name: string, readonly description: string, readonly type: Types.GaugeType, readonly rank: string, readonly interactive: boolean, readonly categoryId: string }> };
+export type GetGaugesQuery = { readonly __typename?: 'Query', readonly gauges: ReadonlyArray<{ readonly __typename?: 'Gauge', readonly id: string, readonly nodeId: string, readonly name: string, readonly description: string, readonly type: Types.GaugeType, readonly rank: string, readonly interactive: boolean, readonly categoryId: string }> };
 
 export type GetGaugeByIdQueryVariables = Types.Exact<{
   id: Types.Scalars['String'];
 }>;
 
 
-export type GetGaugeByIdQuery = { readonly __typename?: 'Query', readonly gauge: { readonly __typename?: 'Gauge', readonly id: string, readonly physicalId: string, readonly name: string, readonly description: string, readonly type: Types.GaugeType, readonly rank: string, readonly interactive: boolean, readonly categoryId: string } };
+export type GetGaugeByIdQuery = { readonly __typename?: 'Query', readonly gauge: { readonly __typename?: 'Gauge', readonly id: string, readonly nodeId: string, readonly name: string, readonly description: string, readonly type: Types.GaugeType, readonly rank: string, readonly interactive: boolean, readonly categoryId: string } };
 
 export type AddNewGaugeMutationVariables = Types.Exact<{
   newGauge: Types.AddGaugeInput;
