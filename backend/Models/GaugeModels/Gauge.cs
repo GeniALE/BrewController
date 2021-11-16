@@ -12,23 +12,34 @@ namespace BrewController.Models.GaugeModels
 {
     public partial class Gauge : RankedMongoCollectionItem
     {
-        public string PhysicalId { get; set; } = null!;
+        public Gauge() { }
 
-        public string Name { get; set; } = null!;
+        public string NodeId { get; set; } = null!;
 
-        public string Description { get; set; } = null!;
+        public string NodeName { get; set; } = null!;
 
-        public GaugeType Type { get; set; }
+        public string? Name { get; set; }
+
+        public string? Description { get; set; }
+
+        public GaugeType Type { get; set; } = GaugeType.NotSet;
 
         public bool Interactive { get; set; }
 
         // references
 
         [BsonRepresentation(BsonType.ObjectId)]
-        public string CategoryId { get; set; } = null!;
+        public string? CategoryId { get; set; }
 
-        public async Task<Category> GetCategory([Service] IMongoDatabase database) =>
-            await database.GetCategoriesCollection().FindItemAsync(this.CategoryId);
+        public async Task<Category?> GetCategory([Service] IMongoDatabase database)
+        {
+            if (this.CategoryId == null)
+            {
+                return null;
+            }
+
+            return await database.GetCategoriesCollection().FindItemAsync(this.CategoryId);
+        }
 
         public async Task<IEnumerable<GaugeValue>> GetValues([Service] IMongoDatabase database)
         {
@@ -45,6 +56,7 @@ namespace BrewController.Models.GaugeModels
 
     public enum GaugeType
     {
+        NotSet,
         Temperature,
         Pressure,
     }

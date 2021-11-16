@@ -4,29 +4,29 @@ namespace BrewController.Models.GaugeModels
     {
         public string Id { get; set; } = null!;
 
-        public string PhysicalId { get; set; } = null!;
+        public string NodeId { get; set; } = null!;
 
-        public string Name { get; set; } = null!;
+        public string NodeName { get; set; } = null!;
 
-        public string Description { get; set; } = null!;
+        public string? Name { get; set; }
+
+        public string? Description { get; set; }
 
         public GaugeType Type { get; set; }
 
-        public bool Interactive { get; set; }
-
-        public string CategoryId { get; set; } = null!;
+        public string? CategoryId { get; set; }
     }
 
     public partial class Gauge
     {
         public Gauge(UpdateGauge updateGauge)
         {
+            this.NodeId = updateGauge.NodeId;
+            this.NodeName = updateGauge.NodeName;
             this.Id = updateGauge.Id;
-            this.PhysicalId = updateGauge.PhysicalId;
             this.Name = updateGauge.Name;
             this.Description = updateGauge.Description;
             this.Type = updateGauge.Type;
-            this.Interactive = updateGauge.Interactive;
             this.CategoryId = updateGauge.CategoryId;
         }
     }

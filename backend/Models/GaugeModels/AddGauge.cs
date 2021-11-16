@@ -2,7 +2,9 @@ namespace BrewController.Models.GaugeModels
 {
     public class AddGauge
     {
-        public string PhysicalId { get; set; } = null!;
+        public string NodeId { get; set; } = null!;
+
+        public string NodeName { get; set; } = null!;
 
         public string Name { get; set; } = null!;
 
@@ -19,7 +21,8 @@ namespace BrewController.Models.GaugeModels
     {
         public Gauge(AddGauge addGauge)
         {
-            this.PhysicalId = addGauge.PhysicalId;
+            this.NodeId = addGauge.NodeId;
+            this.NodeName = addGauge.NodeName;
             this.Name = addGauge.Name;
             this.Description = addGauge.Description;
             this.Type = addGauge.Type;

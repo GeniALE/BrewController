@@ -4,7 +4,9 @@ namespace BrewController.Models.TogglerModels
     {
         public string Id { get; set; } = null!;
 
-        public string PhysicalId { get; set; } = null!;
+        public string NodeId { get; set; } = null!;
+
+        public string NodeName { get; set; } = null!;
 
         public string Name { get; set; } = null!;
 
@@ -20,7 +22,8 @@ namespace BrewController.Models.TogglerModels
         public Toggler(UpdateToggler updateToggler)
         {
             this.Id = updateToggler.Id;
-            this.PhysicalId = updateToggler.PhysicalId;
+            this.NodeId = updateToggler.NodeId;
+            this.NodeName = updateToggler.NodeName;
             this.Name = updateToggler.Name;
             this.Description = updateToggler.Description;
             this.Interactive = updateToggler.Interactive;

@@ -1,15 +1,9 @@
 import logging
 import asyncio
 import sys
-from asyncua import ua, Server
-from asyncua.common.methods import uamethod
+from asyncua import Server, ua
 
 sys.path.insert(0, "..")
-
-
-@uamethod
-def func(parent, value):
-    return value * 2
 
 
 async def main():
@@ -17,7 +11,7 @@ async def main():
     # setup our server
     server = Server()
     await server.init()
-    server.set_endpoint('opc.tcp://0.0.0.0:4840/freeopcua/server/')
+    server.set_endpoint('opc.tcp://0.0.0.0:4840')
 
     # setup our own namespace, not really necessary but should as spec
     uri = 'http://test.brewcontroller.server'
@@ -25,19 +19,21 @@ async def main():
 
     # populating our address space
     # server.nodes, contains links to very common nodes like objects and root
-    myobj = await server.nodes.objects.add_object(idx, 'MyObject')
-    myvar = await myobj.add_variable(idx, 'MyVariable', 6.7)
-    # Set MyVariable to be writable by clients
-    await myvar.set_writable()
-    await server.nodes.objects.add_method(ua.NodeId('ServerMethod', 2), ua.QualifiedName('ServerMethod', 2), func,
-                                          [ua.VariantType.Int64], [ua.VariantType.Int64])
+    root_obj = await server.nodes.objects.add_object(idx, 'Controllers')
+    t1_toggler = await root_obj.add_variable(idx, 'T1_Toggler', False, ua.VariantType.Boolean)
+    t1_wanted = await root_obj.add_variable(idx, 'T1_Wanted', 0.0, ua.VariantType.Double)
+    await root_obj.add_variable(idx, 'T1_Current', 0.0, ua.VariantType.Double)
+
+    # await t1_toggler.set_writable()
+    await t1_wanted.set_writable()
+
     _logger.info('Starting server!')
     async with server:
         while True:
             await asyncio.sleep(1)
-            new_val = await myvar.get_value() + 0.1
-            _logger.info('Set value of %s to %.1f', myvar, new_val)
-            await myvar.write_value(new_val)
+            new_val = await t1_wanted.get_value() + 0.1
+            _logger.info('Set value of %s to %.1f', t1_wanted, new_val)
+            await t1_wanted.write_value(new_val)
 
 
 if __name__ == '__main__':
