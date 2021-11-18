@@ -1,43 +1,22 @@
 <script lang="ts">
-  import { SideNav, SideNavItems, SideNavMenu, SideNavMenuItem as Item, SideNavLink } from 'carbon-components-svelte'
+  import { Button } from 'carbon-components-svelte'
+  import { ChartLine24, Document24, Settings24, Workspace24 } from 'carbon-icons-svelte'
   import { useLocation, useNavigate } from 'svelte-navigator'
 
   const location = useLocation()
   const navigate = useNavigate()
 </script>
 
-<SideNav isOpen>
-  <SideNavItems>
-    <SideNavLink on:click={() => navigate('/')} isSelected={$location.pathname === '/'} text="Overview" />
-    <SideNavLink on:click={() => navigate('/logs')} isSelected={$location.pathname === '/logs'} text="Logs" />
-    <SideNavLink on:click={() => navigate('/charts')} isSelected={$location.pathname === '/charts'} text="Charts" />
-    <SideNavMenu expanded={$location.pathname.startsWith('/settings')} text="Settings">
-      <Item on:click={() => navigate('/settings/gauges')} isSelected={$location.pathname === '/settings/gauges'}>
-        Gauges
-      </Item>
-      <Item on:click={() => navigate('/settings/togglers')} isSelected={$location.pathname === '/settings/togglers'}>
-        Togglers
-      </Item>
-      <Item on:click={() => navigate('/settings/categories')} isSelected={$location.pathname === '/settings/categories'}>
-        Categories
-      </Item>
-      <Item on:click={() => navigate('/settings/charts')} isSelected={$location.pathname === '/settings/charts'}>
-        Charts
-      </Item>
-      <Item on:click={() => navigate('/settings/appearance')} isSelected={$location.pathname === '/settings/appearance'}>
-        Appearance
-      </Item>
-    </SideNavMenu>
-  </SideNavItems>
-</SideNav>
+<div class="nav-menu">
+  <Button kind="ghost" tooltipPosition="top" icon={Workspace24} on:click={() => navigate('/')} isSelected={$location.pathname === '/'} iconDescription="Overview" />
+  <Button kind="ghost" tooltipPosition="top" icon={Document24} on:click={() => navigate('/logs')} isSelected={$location.pathname === '/logs'} iconDescription="Logs" />
+  <Button kind="ghost" tooltipPosition="top" icon={ChartLine24} on:click={() => navigate('/charts')} isSelected={$location.pathname === '/charts'} iconDescription="Charts" />
+  <Button kind="ghost" tooltipPosition="top" icon={Settings24} on:click={() => navigate('/settings')} isSelected={$location.pathname.startsWith('/settings')} iconDescription="Settings" />
+</div>
 
 <style lang="scss">
-  :global(nav.bx--side-nav) {
-    position: static;
-    border-right: 1px solid #e0e0e0;
-  }
-
-  :global(li.bx--side-nav__item) {
-    cursor: pointer;
+  .nav-menu {
+    position: absolute;
+    bottom: 0;
   }
 </style>

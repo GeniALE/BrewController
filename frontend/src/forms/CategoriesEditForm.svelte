@@ -8,7 +8,7 @@
   import { Delete20 } from 'carbon-icons-svelte'
   import { useNavigate } from 'svelte-navigator'
   import { isNullOrEmpty } from 'utils/isNullOrEmpty'
-import ColorPickerInput from 'components/ColorPickerInput.svelte'
+  import ColorPickerInput from 'components/ColorPickerInput.svelte'
 
   export let categoryId: string | undefined
   const isEditing = typeof categoryId !== 'undefined'

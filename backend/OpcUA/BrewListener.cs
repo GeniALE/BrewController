@@ -39,7 +39,6 @@ namespace BrewController.OpcUA
             }).ToArray();
 
             var controllerInfos = await Task.WhenAll(controllerNodes.Select(this.GetControllerInfos));
-            var a = controllerNodes.Zip(controllerInfos);
             foreach (var (node, controllerInfo) in controllerNodes.Zip(controllerInfos))
             {
                 this._brewControllers.Add(node.NodeId.ToString(), controllerInfo);
