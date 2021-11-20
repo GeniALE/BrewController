@@ -9,7 +9,6 @@ const wsClient = new SubscriptionClient('ws://localhost:5000/graphql', {
 
 let exchanges = [
   subscriptionExchange({
-    // @ts-expect-error: Copied from docs, don't know why there is an error here
     forwardSubscription: (operation) => wsClient.request(operation),
   }),
   ...defaultExchanges,

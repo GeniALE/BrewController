@@ -1,21 +1,30 @@
 <script lang="ts">
-  import TextualButton from 'components/TextualButton.svelte'
+  import { operationStore, query } from '@urql/svelte'
+  import CurrentGauge from 'components/CurrentGauge.svelte'
+  import { GetCurrentGaugesDocument } from 'generated/operations'
+  import type { GetCurrentGaugesQuery, GetCurrentGaugesQueryVariables } from 'generated/queries'
 
-  const gotoCategoriesConfiguration = () => {
-    console.log('hello')
-  }
+  const gauges = operationStore<GetCurrentGaugesQuery, GetCurrentGaugesQueryVariables>(GetCurrentGaugesDocument)
+
+  query(gauges)
 </script>
 
-<div class="text-container">
-  <TextualButton on:click={gotoCategoriesConfiguration}>
-    There are no categories set, click here to add some
-  </TextualButton>
-</div>
+{#if $gauges.fetching}
+  <span>loading...</span>
+{:else if $gauges.error}
+  <span>{$gauges.error.message}</span>
+{:else}
+  <div class="gauges-list">
+    {#each $gauges.data.gauges as gauge}
+      <CurrentGauge {gauge} />
+    {/each}
+  </div>
+{/if}
 
 <style lang="scss">
-  .text-container {
-    display: flex;
-    justify-content: center;
-    padding: 15px;
+  .gauges-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
   }
 </style>

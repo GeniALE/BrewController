@@ -26,6 +26,18 @@ query GetGaugeById($id: String!) {
   }
 }
 
+query GetCurrentGauges {
+  gauges {
+    id
+    nodeId
+    nodeName
+    name
+    latestValue {
+      value
+    }
+  }
+}
+
 mutation AddNewGauge($newGauge: AddGaugeInput!, $ranking: RankingInput!) {
   addGauge(newGauge: $newGauge, ranking: $ranking) {
     id

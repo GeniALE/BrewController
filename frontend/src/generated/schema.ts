@@ -1,6 +1,7 @@
 // file generated! DO NOT TOUCH!
 /* eslint-disable */
 export type Maybe<T> = T;
+export type InputMaybe<T> = T;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -26,6 +27,7 @@ export type AddGaugeInput = {
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
   readonly nodeId: Scalars['String'];
+  readonly nodeName: Scalars['String'];
   readonly type: GaugeType;
 };
 
@@ -35,6 +37,7 @@ export type AddTogglerInput = {
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
   readonly nodeId: Scalars['String'];
+  readonly nodeName: Scalars['String'];
 };
 
 export type Category = {
@@ -49,19 +52,22 @@ export type Category = {
 
 export type Gauge = {
   readonly __typename?: 'Gauge';
-  readonly category: Category;
-  readonly categoryId: Scalars['String'];
-  readonly description: Scalars['String'];
+  readonly category?: Maybe<Category>;
+  readonly categoryId?: Maybe<Scalars['String']>;
+  readonly description?: Maybe<Scalars['String']>;
   readonly id: Scalars['String'];
   readonly interactive: Scalars['Boolean'];
-  readonly name: Scalars['String'];
+  readonly latestValue?: Maybe<GaugeValue>;
+  readonly name?: Maybe<Scalars['String']>;
   readonly nodeId: Scalars['String'];
+  readonly nodeName: Scalars['String'];
   readonly rank: Scalars['String'];
   readonly type: GaugeType;
   readonly values: ReadonlyArray<GaugeValue>;
 };
 
 export enum GaugeType {
+  NotSet = 'NOT_SET',
   Pressure = 'PRESSURE',
   Temperature = 'TEMPERATURE'
 }
@@ -159,19 +165,19 @@ export type MutationDeleteTogglerArgs = {
 
 
 export type MutationUpdateCategoryArgs = {
-  ranking?: Maybe<RankingInput>;
+  ranking?: InputMaybe<RankingInput>;
   updatedCategory: UpdateCategoryInput;
 };
 
 
 export type MutationUpdateGaugeArgs = {
-  ranking?: Maybe<RankingInput>;
+  ranking?: InputMaybe<RankingInput>;
   updatedGauge: UpdateGaugeInput;
 };
 
 
 export type MutationUpdateTogglerArgs = {
-  ranking?: Maybe<RankingInput>;
+  ranking?: InputMaybe<RankingInput>;
   updatedToggler: UpdateTogglerInput;
 };
 
@@ -203,7 +209,7 @@ export type QueryGaugeArgs = {
 
 
 export type QueryGaugesArgs = {
-  categoryId?: Maybe<Scalars['String']>;
+  categoryId?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -213,12 +219,12 @@ export type QueryTogglerArgs = {
 
 
 export type QueryTogglersArgs = {
-  categoryId?: Maybe<Scalars['String']>;
+  categoryId?: InputMaybe<Scalars['String']>;
 };
 
 export type RankingInput = {
-  readonly nextId?: Maybe<Scalars['String']>;
-  readonly previousId?: Maybe<Scalars['String']>;
+  readonly nextId?: InputMaybe<Scalars['String']>;
+  readonly previousId?: InputMaybe<Scalars['String']>;
 };
 
 export type Subscription = {
@@ -240,13 +246,14 @@ export type SubscriptionLatestTogglerValueArgs = {
 
 export type Toggler = {
   readonly __typename?: 'Toggler';
-  readonly category: Category;
-  readonly categoryId: Scalars['String'];
-  readonly description: Scalars['String'];
+  readonly category?: Maybe<Category>;
+  readonly categoryId?: Maybe<Scalars['String']>;
+  readonly description?: Maybe<Scalars['String']>;
   readonly id: Scalars['String'];
   readonly interactive: Scalars['Boolean'];
-  readonly name: Scalars['String'];
+  readonly name?: Maybe<Scalars['String']>;
   readonly nodeId: Scalars['String'];
+  readonly nodeName: Scalars['String'];
   readonly rank: Scalars['String'];
   readonly values: ReadonlyArray<TogglerValue>;
 };
@@ -266,18 +273,18 @@ export type TogglerValue = {
 };
 
 export type UpdateCategoryInput = {
-  readonly color?: Maybe<Scalars['String']>;
+  readonly color?: InputMaybe<Scalars['String']>;
   readonly id: Scalars['String'];
-  readonly name?: Maybe<Scalars['String']>;
+  readonly name?: InputMaybe<Scalars['String']>;
 };
 
 export type UpdateGaugeInput = {
-  readonly categoryId: Scalars['String'];
-  readonly description: Scalars['String'];
+  readonly categoryId?: InputMaybe<Scalars['String']>;
+  readonly description?: InputMaybe<Scalars['String']>;
   readonly id: Scalars['String'];
-  readonly interactive: Scalars['Boolean'];
-  readonly name: Scalars['String'];
+  readonly name?: InputMaybe<Scalars['String']>;
   readonly nodeId: Scalars['String'];
+  readonly nodeName: Scalars['String'];
   readonly type: GaugeType;
 };
 
@@ -288,4 +295,5 @@ export type UpdateTogglerInput = {
   readonly interactive: Scalars['Boolean'];
   readonly name: Scalars['String'];
   readonly nodeId: Scalars['String'];
+  readonly nodeName: Scalars['String'];
 };

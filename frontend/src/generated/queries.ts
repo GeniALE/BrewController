@@ -25,7 +25,7 @@ export type AddNewCategoryMutation = { readonly __typename?: 'Mutation', readonl
 
 export type UpdateCategoryMutationVariables = Types.Exact<{
   updatedCategory: Types.UpdateCategoryInput;
-  ranking?: Types.Maybe<Types.RankingInput>;
+  ranking?: Types.InputMaybe<Types.RankingInput>;
 }>;
 
 
@@ -36,19 +36,24 @@ export type GetLatestGaugeValueSubscriptionVariables = Types.Exact<{
 }>;
 
 
-export type GetLatestGaugeValueSubscription = { readonly __typename?: 'Subscription', readonly latestGaugeValue: { readonly __typename?: 'GaugeValue', readonly id: string, readonly value: number, readonly gaugeId: string } };
+export type GetLatestGaugeValueSubscription = { readonly __typename?: 'Subscription', readonly latestGaugeValue: { readonly __typename?: 'GaugeValue', readonly id: string, readonly value: number } };
 
 export type GetGaugesQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 
-export type GetGaugesQuery = { readonly __typename?: 'Query', readonly gauges: ReadonlyArray<{ readonly __typename?: 'Gauge', readonly id: string, readonly nodeId: string, readonly name: string, readonly description: string, readonly type: Types.GaugeType, readonly rank: string, readonly interactive: boolean, readonly categoryId: string }> };
+export type GetGaugesQuery = { readonly __typename?: 'Query', readonly gauges: ReadonlyArray<{ readonly __typename?: 'Gauge', readonly id: string, readonly nodeId: string, readonly nodeName: string, readonly name?: string | null | undefined, readonly description?: string | null | undefined, readonly type: Types.GaugeType, readonly rank: string, readonly interactive: boolean, readonly categoryId?: string | null | undefined }> };
 
 export type GetGaugeByIdQueryVariables = Types.Exact<{
   id: Types.Scalars['String'];
 }>;
 
 
-export type GetGaugeByIdQuery = { readonly __typename?: 'Query', readonly gauge: { readonly __typename?: 'Gauge', readonly id: string, readonly nodeId: string, readonly name: string, readonly description: string, readonly type: Types.GaugeType, readonly rank: string, readonly interactive: boolean, readonly categoryId: string } };
+export type GetGaugeByIdQuery = { readonly __typename?: 'Query', readonly gauge: { readonly __typename?: 'Gauge', readonly id: string, readonly nodeId: string, readonly nodeName: string, readonly name?: string | null | undefined, readonly description?: string | null | undefined, readonly type: Types.GaugeType, readonly rank: string, readonly interactive: boolean, readonly categoryId?: string | null | undefined } };
+
+export type GetCurrentGaugesQueryVariables = Types.Exact<{ [key: string]: never; }>;
+
+
+export type GetCurrentGaugesQuery = { readonly __typename?: 'Query', readonly gauges: ReadonlyArray<{ readonly __typename?: 'Gauge', readonly id: string, readonly nodeId: string, readonly nodeName: string, readonly name?: string | null | undefined, readonly latestValue?: { readonly __typename?: 'GaugeValue', readonly value: number } | null | undefined }> };
 
 export type AddNewGaugeMutationVariables = Types.Exact<{
   newGauge: Types.AddGaugeInput;
@@ -60,7 +65,7 @@ export type AddNewGaugeMutation = { readonly __typename?: 'Mutation', readonly a
 
 export type UpdateGaugeMutationVariables = Types.Exact<{
   updatedGauge: Types.UpdateGaugeInput;
-  ranking?: Types.Maybe<Types.RankingInput>;
+  ranking?: Types.InputMaybe<Types.RankingInput>;
 }>;
 
 

@@ -2,6 +2,12 @@ subscription GetLatestGaugeValue($gaugeId: String!) {
   latestGaugeValue(gaugeId: $gaugeId) {
     id
     value
-    gaugeId
+  }
+}
+
+query GetLatestGaugeValue($gaugeId: String!) {
+  latestGaugeValue(gaugeId: $gaugeId) {
+    id
+    value
   }
 }

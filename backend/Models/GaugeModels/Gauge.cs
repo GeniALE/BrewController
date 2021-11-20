@@ -52,6 +52,19 @@ namespace BrewController.Models.GaugeModels
 
             return gaugeValues ?? new List<GaugeValue>();
         }
+
+        public async Task<GaugeValue?> GetLatestValue([Service] IMongoDatabase database)
+        {
+            var filter = Builders<GaugeValue>.Filter.Eq("GaugeId", this.Id);
+            var gaugeValue = await database
+                .GetGaugeValuesCollection()
+                .Find(filter)
+                .SortByDescending(bson => bson.Id)
+                .Limit(1)
+                .SingleOrDefaultAsync();
+
+            return gaugeValue;
+        }
     }
 
     public enum GaugeType

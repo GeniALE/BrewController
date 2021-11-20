@@ -40,7 +40,6 @@ export const GetLatestGaugeValueDocument = gql`
   latestGaugeValue(gaugeId: $gaugeId) {
     id
     value
-    gaugeId
   }
 }
     `;
@@ -49,6 +48,7 @@ export const GetGaugesDocument = gql`
   gauges {
     id
     nodeId
+    nodeName
     name
     description
     type
@@ -63,12 +63,26 @@ export const GetGaugeByIdDocument = gql`
   gauge(gaugeId: $id) {
     id
     nodeId
+    nodeName
     name
     description
     type
     rank
     interactive
     categoryId
+  }
+}
+    `;
+export const GetCurrentGaugesDocument = gql`
+    query GetCurrentGauges {
+  gauges {
+    id
+    nodeId
+    nodeName
+    name
+    latestValue {
+      value
+    }
   }
 }
     `;

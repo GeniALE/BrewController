@@ -4,16 +4,25 @@
   export let href: string
 </script>
 
-<ClickableTile style="height: 100%; border: 1px solid var(--cds-ui-background)" {href}>
-  <div class="content">
-    <slot name="title" />
-    <div class="action">
-      <slot name="action" />
+<div class="container">
+  <ClickableTile style="height: 100%;" {href}>
+    <div class="content">
+      <slot name="title" />
+      <div class="action">
+        <slot name="action" />
+      </div>
     </div>
-  </div>
-</ClickableTile>
+  </ClickableTile>
+</div>
 
 <style lang="scss">
+  .container {
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+  }
+
   .content {
     width: 100%;
     height: 100%;

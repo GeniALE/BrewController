@@ -18,5 +18,7 @@
   .nav-menu {
     position: absolute;
     bottom: 0;
+    z-index: 9999;
+    background: var(--cds-background);
   }
 </style>
