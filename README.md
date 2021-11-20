@@ -15,7 +15,6 @@ It can also control the various controllers onboard with a clean user interface 
   - [Frontend](#frontend)
   - [Backend](#backend)
   - [MongoDB](#mongodb)
-  - [Redis](#redis)
 - [Setting the project for development](#setting-the-project-for-development)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
@@ -59,10 +58,6 @@ It contains:
 - logs of the events made by users
 - current status of the brew machine and its components
 - details of the components (given by the user)
-
-### Redis
-
-Redis is used for the pub/sub of the backend
 
 ## Setting the project for development
 
@@ -114,7 +109,6 @@ cpu@user:$ pnpm run dev
 ### Environment variables
 
 - `BREW_DB_URI` the connection string for the MongoDB (default: mongodb://root@pass:localhost)
-- `REDIS_URI` the connection string for the Redis (default: localhost:6369)
 - `BREW_APP_DIRECTORY` the absolute path for the frontend build
 - `ASPNETCORE_URLS` the url where the frontend and backend is hosted (default: <http://127.0.0.1:5000>)
 - `BREW_OPCUA_SERVER_ADDRESS` the OPC UA address for the communicating with the hardware (default: <opc.tcp://localhost:4840>)

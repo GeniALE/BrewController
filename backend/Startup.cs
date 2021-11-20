@@ -9,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using MongoDB.Driver;
-using StackExchange.Redis;
 
 namespace BrewController
 {
@@ -18,14 +17,12 @@ namespace BrewController
         public static void ConfigureServices(IServiceCollection services)
         {
             var mongodbConnectionString = Environment.GetEnvironmentVariable("BREW_DB_URI") ?? "mongodb://root:pass@localhost";
-            var redisUri = Environment.GetEnvironmentVariable("REDIS_URI") ?? "localhost:6379";
 
             services
                 .AddCors()
                 .AddSingleton<BrewClient>()
                 .AddSingleton<BrewLogger>()
-                .AddInMemorySubscriptions()
-                .AddRedisSubscriptions(_ => ConnectionMultiplexer.Connect(redisUri));
+                .AddInMemorySubscriptions();
 
             services
                 .AddGraphQLServer()

@@ -7,6 +7,7 @@ using BrewController.Utilities;
 using HotChocolate.Data.Filters.Expressions;
 using HotChocolate.Subscriptions;
 using Microsoft.Extensions.Hosting;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Opc.Ua;
 using Opc.UaFx;
@@ -17,7 +18,7 @@ namespace BrewController.OpcUA
     public class BrewListener : BackgroundService
     {
         private readonly BrewClient _brewClient;
-        private Dictionary<string, (string ObjectId, string ControllerType)> _brewControllers;
+        private Dictionary<string, (string ObjectId, string ControllerType)> _brewControllers = new();
 
         public BrewListener(BrewClient brewClient)
         {
@@ -26,11 +27,10 @@ namespace BrewController.OpcUA
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            using var client = this._brewClient;
             // var rootNode =
             //     client.BrowseNode(
             //         $"{Environment.GetEnvironmentVariable("BREW_OPCUA_SERVER_NAMESPACE") ?? "http://test.brewcontroller.server"};i=84");
-            var rootNode = client.BrowseNode("ns=2;i=1");
+            var rootNode = this._brewClient.BrowseNode("ns=2;i=1");
 
             var controllerNodes = rootNode.Children().Where(cn =>
             {
@@ -42,7 +42,7 @@ namespace BrewController.OpcUA
             foreach (var (node, controllerInfo) in controllerNodes.Zip(controllerInfos))
             {
                 this._brewControllers.Add(node.NodeId.ToString(), controllerInfo);
-                client.SubscribeDataChange(node.NodeId, this.HandleChange);
+                this._brewClient.SubscribeDataChange(node.NodeId, this.HandleChange);
             }
 
             while (!stoppingToken.IsCancellationRequested) { }
@@ -50,15 +50,18 @@ namespace BrewController.OpcUA
 
         private void HandleChange(object sender, OpcDataChangeReceivedEventArgs eventArgs)
         {
-            Console.WriteLine(eventArgs.Item.Value);
+            var nodeId = eventArgs.MonitoredItem.NodeId;
+            var nodeIdValue = $"ns={nodeId.NamespaceIndex};i={nodeId.ValueAsString}";
+
+            var controllerInfo = this._brewControllers[nodeIdValue];
+
+            Task.Run(async () => await this._brewClient.CreateControllerValue(controllerInfo, eventArgs.Item.Value));
         }
 
-        private Task<(string ObjectId, string ControllerId)> GetControllerInfos(OpcNodeInfo controllerNode)
+        private Task<(string ObjectId, string ControllerType)> GetControllerInfos(OpcNodeInfo controllerNode)
         {
-            using var client = this._brewClient;
-
             var accessLevel = controllerNode.Attribute(OpcAttribute.AccessLevel).Value.AsValue<byte>();
-            return client.CreateController(controllerNode, accessLevel.Value.GetBit(1));
+            return this._brewClient.CreateController(controllerNode, accessLevel.Value.GetBit(1));
         }
     }
 }

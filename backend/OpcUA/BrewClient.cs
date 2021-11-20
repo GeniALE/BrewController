@@ -2,7 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using BrewController.Models.GaugeModels;
+using BrewController.Models.GaugeValueModels;
 using BrewController.Models.TogglerModels;
+using BrewController.Models.TogglerValueModels;
+using BrewController.Schema;
 using BrewController.Utilities;
 using HotChocolate.Subscriptions;
 using MongoDB.Driver;
@@ -61,6 +64,31 @@ namespace BrewController.OpcUA
                     return (togglerId, "Toggler");
                 default:
                     throw new Exception($"Can't support {nodeDataType} datatype");
+            }
+        }
+
+        public async Task CreateControllerValue((string ObjectId, string ControllerType) controllerInfo, OpcValue value)
+        {
+            switch (controllerInfo.ControllerType)
+            {
+                case "Gauge":
+                    var gaugeValue = new GaugeValue()
+                    {
+                        GaugeId = controllerInfo.ObjectId,
+                        Value = value.AsValue<double>().Value,
+                    };
+                    await this._database.GetGaugeValuesCollection().InsertOneAsync(gaugeValue);
+                    await this._sender.SendAsync($"{controllerInfo.ObjectId}_{nameof(Subscription.GetLatestGaugeValue)}", gaugeValue);
+                    break;
+                case "Toggler":
+                    var togglerValue = new TogglerValue()
+                    {
+                        TogglerId = controllerInfo.ObjectId,
+                        Status = value.AsValue<bool>().Value ? TogglerStatus.On : TogglerStatus.Off,
+                    };
+                    await this._database.GetTogglerValuesCollection().InsertOneAsync(togglerValue);
+                    await this._sender.SendAsync($"{controllerInfo.ObjectId}_{nameof(Subscription.GetLatestTogglerValue)}", togglerValue);
+                    break;
             }
         }
 
