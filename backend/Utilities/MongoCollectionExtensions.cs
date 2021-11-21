@@ -25,9 +25,7 @@ namespace BrewController.Utilities
                 var value = property.GetValue(item, null);
 
                 if (value != null)
-                {
                     combinedUpdates.Add(Builders<T>.Update.Set(property.Name, value));
-                }
             }
 
             return collection.UpdateOneAsync(filter, Builders<T>.Update.Combine(combinedUpdates));

@@ -43,9 +43,7 @@ namespace BrewController.Schema
         {
             var category = new Category(updatedCategory);
             if (ranking != null)
-            {
                 await ranking.UpdateModelRank(category, this._database.GetCategoriesCollection());
-            }
 
             await this._database.GetCategoriesCollection().UpdateItemAsync(category);
             await this._brewLogger.AddUpdateLog($"Category updated: {category.Name}");

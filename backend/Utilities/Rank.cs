@@ -30,9 +30,7 @@ namespace BrewController.Utilities
                 var charCode = (int)character;
 
                 if (charCode > StartCharCode + 1)
-                {
                     return $"{nextRank[..(count - index)]}{(char)(charCode - 1)}";
-                }
             }
 
             return $"{nextRank[..(count - 1)]}{(char)StartCharCode}{(char)EndCharCode}";
@@ -47,9 +45,7 @@ namespace BrewController.Utilities
                 var charCode = (int)character;
 
                 if (charCode < EndCharCode)
-                {
                     return $"{previousRank[..(count - index)]}{(char)(charCode + 1)}";
-                }
             }
 
             return $"{previousRank}{(char)(StartCharCode + 1)}";
@@ -85,9 +81,7 @@ namespace BrewController.Utilities
             }
 
             if (flagged)
-            {
                 rankBuilder.Append((char)GetAverage(StartCharCode, EndCharCode));
-            }
 
             return rankBuilder.ToString();
         }

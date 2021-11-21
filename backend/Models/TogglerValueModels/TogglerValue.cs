@@ -16,9 +16,7 @@ namespace BrewController.Models.TogglerValueModels
         public DateTime GetCreatedAt()
         {
             if (!ObjectId.TryParse(this.Id, out var objectId))
-            {
                 throw new Exception($"{this.Id} is not a valid objectId");
-            }
 
             return objectId.CreationTime;
         }

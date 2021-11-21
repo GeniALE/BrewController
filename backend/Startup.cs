@@ -73,16 +73,12 @@ namespace BrewController
                 });
 
             if (!env.IsProduction())
-            {
                 return;
-            }
 
             var appDir = Environment.GetEnvironmentVariable("BREW_APP_DIRECTORY");
 
             if (appDir == null)
-            {
                 throw new Exception("Missing BREW_APP_DIRECTORY environment variable");
-            }
 
             app
                 .UseEndpoints(endpoints =>

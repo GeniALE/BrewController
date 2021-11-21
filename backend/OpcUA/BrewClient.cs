@@ -99,9 +99,7 @@ namespace BrewController.OpcUA
             var foundGaugeList = await result.ToListAsync();
 
             if (foundGaugeList.SingleOrDefault() != null)
-            {
                 return foundGaugeList.Single().Id;
-            }
 
             await this._database.GetGaugesCollection().InsertOneAsync(gauge);
             return gauge.Id;
@@ -114,9 +112,7 @@ namespace BrewController.OpcUA
             var foundTogglerList = await result.ToListAsync();
 
             if (foundTogglerList.SingleOrDefault() != null)
-            {
                 return foundTogglerList.Single().Id;
-            }
 
             await this._database.GetTogglersCollection().InsertOneAsync(toggler);
             return toggler.Id;

@@ -43,9 +43,7 @@ namespace BrewController.Schema
         {
             var toggler = new Toggler(updatedToggler);
             if (ranking != null)
-            {
                 await ranking.UpdateModelRank(toggler, this._database.GetTogglersCollection());
-            }
 
             await this._database.GetTogglersCollection().UpdateItemAsync(toggler);
             await this._brewLogger.AddUpdateLog($"Toggler updated: {toggler.Name}");

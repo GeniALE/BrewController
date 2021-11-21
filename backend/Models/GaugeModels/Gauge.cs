@@ -34,9 +34,7 @@ namespace BrewController.Models.GaugeModels
         public async Task<Category?> GetCategory([Service] IMongoDatabase database)
         {
             if (this.CategoryId == null)
-            {
                 return null;
-            }
 
             return await database.GetCategoriesCollection().FindItemAsync(this.CategoryId);
         }

@@ -43,9 +43,7 @@ namespace BrewController.Schema
         {
             var gauge = new Gauge(updatedGauge);
             if (ranking != null)
-            {
                 await ranking.UpdateModelRank(gauge, this._database.GetGaugesCollection());
-            }
 
             await this._database.GetGaugesCollection().UpdateItemAsync(gauge);
             await this._brewLogger.AddUpdateLog($"Gauge updated: {gauge.Name}");
