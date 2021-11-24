@@ -1,17 +1,13 @@
 <script lang="ts">
-  import { setModalContainer, closeModal } from 'utils/modal'
-
-  const onCloseModal = () => {
-    closeModal?.()
-  }
+  import { setModalContainer, destroyModal } from 'utils/modal'
 </script>
 
-<div class="modal" role="presentation" use:setModalContainer>
-  <div class="background" on:click={onCloseModal} />
+<div class="modal-container" role="presentation" use:setModalContainer>
+  <div class="background" on:click={() => $destroyModal?.()} />
 </div>
 
 <style lang="scss">
-  .modal {
+  .modal-container {
     width: 100vw;
     height: 100vh;
     z-index: 9999;

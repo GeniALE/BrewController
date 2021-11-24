@@ -5,9 +5,19 @@ using BrewController.Models.GaugeValueModels;
 using BrewController.Utilities;
 using HotChocolate.Execution;
 using HotChocolate.Types;
+using MongoDB.Driver;
 
 namespace BrewController.Schema
 {
+    public partial class Query
+    {
+        public async Task<GaugeValue?> GetLatestGaugeValue(string gaugeId)
+        {
+            var filter = Builders<GaugeValue>.Filter.Eq("GaugeId", gaugeId);
+            return await this._database.GetGaugeValuesCollection().Find(filter).FirstAsync();
+        }
+    }
+
     public partial class Mutation
     {
         public async Task<GaugeValue> AddGaugeValue(string gaugeId, double value)

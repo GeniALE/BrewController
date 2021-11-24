@@ -4,7 +4,6 @@
   import { GetLatestGaugeValueDocument } from 'generated/operations'
   import type { GetCurrentGaugesQuery, GetLatestGaugeValueSubscription, GetLatestGaugeValueSubscriptionVariables } from 'generated/queries'
   import ControlPanelModal from 'modals/ControlPanelModal.svelte'
-  import { modal } from 'utils/modal'
 
   export let gauge: GetCurrentGaugesQuery['gauges'][number]
 
@@ -27,9 +26,7 @@
 </AspectRatio>
 
 {#if showModal}
-  <div use:modal={() => showModal = false}>
-    <ControlPanelModal controlId={gauge.id} controlType="gauge" />
-  </div>
+  <ControlPanelModal controlId={gauge.id} controlType="gauge" bind:showModal />
 {/if}
 
 <style lang="scss">

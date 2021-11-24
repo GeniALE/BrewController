@@ -38,6 +38,13 @@ export type GetLatestGaugeValueSubscriptionVariables = Types.Exact<{
 
 export type GetLatestGaugeValueSubscription = { readonly __typename?: 'Subscription', readonly latestGaugeValue: { readonly __typename?: 'GaugeValue', readonly id: string, readonly value: number } };
 
+export type GetCurrentLatestGaugeValueQueryVariables = Types.Exact<{
+  gaugeId: Types.Scalars['String'];
+}>;
+
+
+export type GetCurrentLatestGaugeValueQuery = { readonly __typename?: 'Query', readonly latestGaugeValue?: { readonly __typename?: 'GaugeValue', readonly id: string, readonly value: number } | null | undefined };
+
 export type GetGaugesQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 

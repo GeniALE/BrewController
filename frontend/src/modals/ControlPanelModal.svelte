@@ -1,14 +1,65 @@
 <script lang="ts">
+  import { Button } from 'carbon-components-svelte'
+import GaugeValueForm from 'forms/GaugeValueForm.svelte'
+  import { destroyModal, modal } from 'utils/modal'
+
+  export let showModal: boolean
   export let controlId: string
   export let controlType: 'gauge' | 'toggler'
+
+  let edited
+  let value
+
+  const close = () => {
+    $destroyModal?.()
+  }
 </script>
 
-<div class="modal" role="dialog">
-  {`${controlId}-${controlType}`}
+<div class="modal" role="dialog" use:modal={() => showModal = false}>
+  <div class="info">
+    {#if controlType === 'gauge'}
+      <GaugeValueForm {edited} {value} gaugeId={controlId} />
+    {/if}
+  </div>
+  <div class="content">
+    <div class="chart">
+      chart
+    </div>
+    <div class="confirm-actions bx--btn-set">
+      <Button kind="secondary" on:click={close}>Cancel</Button>
+      <Button>Submit</Button>
+    </div>
+  </div>
 </div>
 
 <style lang="scss">
   .modal {
+    width: min(1200px, 90vw);
+    height: min(800px, 80vh);
     background: var(--cds-ui-01);
+    display: flex;
+  }
+
+  .info {
+    width: 400px;
+    padding: 16px;
+    background: var(--cds-ui-03);
+  }
+
+  .content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .chart {
+      flex-grow: 1;
+      padding: 16px;
+    }
+
+    .confirm-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
   }
 </style>

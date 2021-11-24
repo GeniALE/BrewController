@@ -12,7 +12,7 @@
   import SettingsCategoriesEditPage from 'pages/SettingsCategoriesEditPage.svelte'
   import SettingsGaugesEditPage from 'pages/SettingsGaugesEditPage.svelte'
   import Settings from 'pages/Settings.svelte'
-  import Modal from 'components/Modal.svelte'
+  import ModalContainer from 'components/ModalContainer.svelte'
 
   // setup the urql client
   setClient(urqlClient)
@@ -57,7 +57,7 @@
       </main>
     </div>
   </Router>
-  <Modal />
+  <ModalContainer />
 </Theme>
 
 <style lang="scss">

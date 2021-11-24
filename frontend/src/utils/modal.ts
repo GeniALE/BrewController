@@ -1,7 +1,9 @@
+import type { Writable } from 'svelte/store'
 import { tick } from 'svelte'
+import { writable } from 'svelte/store'
 
 let modalContainer: HTMLElement | undefined = undefined
-export let closeModal: () => void | undefined = undefined
+export const destroyModal: Writable<(() => void) | undefined> = writable(undefined)
 
 export const setModalContainer = (container: HTMLElement) => {
   modalContainer = container
@@ -26,7 +28,7 @@ const mount = (node: HTMLElement) => {
     if (modalContainer.contains(node)) {
       // modalContainer.removeChild(node)
       modalContainer.style.display = 'none'
-      closeModal = undefined
+      destroyModal.set(undefined)
     }
   }
 }
@@ -42,10 +44,12 @@ export const modal = (node: HTMLElement, onDestroy: () => void) => {
     destroy = mount(node)
   }
 
-  closeModal = () => {
+  const closeModal = () => {
     onDestroy()
     destroy()
   }
+
+  destroyModal.set(closeModal)
 
   return {
     destroy: closeModal,

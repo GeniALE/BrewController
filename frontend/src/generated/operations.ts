@@ -43,6 +43,14 @@ export const GetLatestGaugeValueDocument = gql`
   }
 }
     `;
+export const GetCurrentLatestGaugeValueDocument = gql`
+    query GetCurrentLatestGaugeValue($gaugeId: String!) {
+  latestGaugeValue(gaugeId: $gaugeId) {
+    id
+    value
+  }
+}
+    `;
 export const GetGaugesDocument = gql`
     query GetGauges {
   gauges {

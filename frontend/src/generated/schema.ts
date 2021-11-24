@@ -192,6 +192,7 @@ export type Query = {
   readonly category: Category;
   readonly gauge: Gauge;
   readonly gauges: ReadonlyArray<Gauge>;
+  readonly latestGaugeValue?: Maybe<GaugeValue>;
   readonly logs: ReadonlyArray<Log>;
   readonly toggler: Toggler;
   readonly togglers: ReadonlyArray<Toggler>;
@@ -210,6 +211,11 @@ export type QueryGaugeArgs = {
 
 export type QueryGaugesArgs = {
   categoryId?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryLatestGaugeValueArgs = {
+  gaugeId: Scalars['String'];
 };
 
 

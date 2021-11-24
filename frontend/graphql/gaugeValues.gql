@@ -5,7 +5,7 @@ subscription GetLatestGaugeValue($gaugeId: String!) {
   }
 }
 
-query GetLatestGaugeValue($gaugeId: String!) {
+query GetCurrentLatestGaugeValue($gaugeId: String!) {
   latestGaugeValue(gaugeId: $gaugeId) {
     id
     value
