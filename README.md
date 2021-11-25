@@ -112,3 +112,4 @@ cpu@user:$ pnpm run dev
 - `BREW_APP_DIRECTORY` the absolute path for the frontend build
 - `ASPNETCORE_URLS` the url where the frontend and backend is hosted (default: <http://127.0.0.1:5000>)
 - `BREW_OPCUA_SERVER_ADDRESS` the OPC UA address for the communicating with the hardware (default: <opc.tcp://localhost:4840>)
+- `BREW_DISABLE_OPCUA` if set, it disables the communication with the OPC UA server

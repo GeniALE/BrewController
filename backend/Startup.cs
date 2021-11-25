@@ -21,7 +21,6 @@ namespace BrewController
             services
                 .AddCors()
                 .AddSingleton<BrewClient>()
-                .AddSingleton<BrewLogger>()
                 .AddInMemorySubscriptions();
 
             services
@@ -41,6 +40,9 @@ namespace BrewController
                 var database = client.GetDatabase("brewdb");
                 return database;
             });
+
+            if (Environment.GetEnvironmentVariable("BREW_DISABLE_OPCUA") is null)
+                services.AddSingleton<BrewLogger>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
