@@ -1,14 +1,28 @@
 <script lang="ts">
+  import { mutation } from '@urql/svelte'
   import { Button } from 'carbon-components-svelte'
-import GaugeValueForm from 'forms/GaugeValueForm.svelte'
+  import GaugeValueForm from 'forms/GaugeValueForm.svelte'
+  import { AddNewGaugeValueDocument } from 'generated/operations'
+  import type { AddNewGaugeValueMutation, AddNewGaugeValueMutationVariables } from 'generated/queries'
   import { destroyModal, modal } from 'utils/modal'
 
   export let showModal: boolean
   export let controlId: string
   export let controlType: 'gauge' | 'toggler'
 
-  let edited
-  let value
+  let edited: boolean
+  let value: number
+
+  const addGaugeValue = mutation<AddNewGaugeValueMutation, AddNewGaugeValueMutationVariables>({ query: AddNewGaugeValueDocument })
+
+  const submit = async () => {
+    await addGaugeValue({
+      gaugeId: controlId,
+      value,
+    })
+
+    close()
+  }
 
   const close = () => {
     $destroyModal?.()
@@ -18,7 +32,7 @@ import GaugeValueForm from 'forms/GaugeValueForm.svelte'
 <div class="modal" role="dialog" use:modal={() => showModal = false}>
   <div class="info">
     {#if controlType === 'gauge'}
-      <GaugeValueForm {edited} {value} gaugeId={controlId} />
+      <GaugeValueForm bind:edited={edited} bind:value={value} gaugeId={controlId} />
     {/if}
   </div>
   <div class="content">
@@ -27,7 +41,7 @@ import GaugeValueForm from 'forms/GaugeValueForm.svelte'
     </div>
     <div class="confirm-actions bx--btn-set">
       <Button kind="secondary" on:click={close}>Cancel</Button>
-      <Button>Submit</Button>
+      <Button disabled={!edited} on:click={submit}>Submit</Button>
     </div>
   </div>
 </div>

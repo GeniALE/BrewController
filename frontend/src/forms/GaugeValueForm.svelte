@@ -1,13 +1,14 @@
 <script lang="ts">
-  import { Button, ClickableTile, NumberInput, NumberInputSkeleton, SkeletonPlaceholder, SkeletonText } from 'carbon-components-svelte'
+  import { ClickableTile, NumberInput, NumberInputSkeleton, SkeletonPlaceholder, SkeletonText } from 'carbon-components-svelte'
   import { operationStore, query } from '@urql/svelte'
   import { GetCurrentLatestGaugeValueDocument, GetGaugeByIdDocument } from 'generated/operations'
   import type { GetCurrentLatestGaugeValueQuery, GetCurrentLatestGaugeValueQueryVariables, GetGaugeByIdQuery, GetGaugeByIdQueryVariables } from 'generated/queries'
 
-
-  export let edited: boolean
-  export let value: number
   export let gaugeId: string
+  export let value = 0
+  export let edited = false
+
+  let updated = false
 
   const gauge = operationStore<GetGaugeByIdQuery, GetGaugeByIdQueryVariables>(GetGaugeByIdDocument, {
     id: gaugeId,
@@ -17,8 +18,17 @@
     gaugeId,
   })
 
+  const updateGaugeValue = (delta: number) => {
+    value += delta
+  }
+
   query(gauge)
   query(gaugeValue)
+
+  $: if (!$gaugeValue.fetching && $gaugeValue.data && !updated) {
+    value = $gaugeValue.data.latestGaugeValue.value
+    updated = true
+  }
 </script>
 
 <div class="form">
@@ -35,7 +45,7 @@
     {:else if $gaugeValue.error}
       <p>{$gaugeValue.error.message}</p>
     {:else}
-      <NumberInput hideSteppers label="Value" size="xl" value={$gaugeValue.data.latestGaugeValue.value} />
+      <NumberInput hideSteppers label="Value" size="xl" on:change={() => edited = true} bind:value={value} />
     {/if}
     {#if $gauge.data.gauge.interactive}
       <div class="buttons">
@@ -45,10 +55,10 @@
           <SkeletonPlaceholder />
           <SkeletonPlaceholder />
         {:else}
-          <ClickableTile>-10</ClickableTile>
-          <ClickableTile>-1</ClickableTile>
-          <ClickableTile>+1</ClickableTile>
-          <ClickableTile>+10</ClickableTile>
+          <ClickableTile on:click={() => updateGaugeValue(-10)}>-10</ClickableTile>
+          <ClickableTile on:click={() => updateGaugeValue(-1)}>-1</ClickableTile>
+          <ClickableTile on:click={() => updateGaugeValue(1)}>+1</ClickableTile>
+          <ClickableTile on:click={() => updateGaugeValue(10)}>+10</ClickableTile>
         {/if}
       </div>
     {/if}

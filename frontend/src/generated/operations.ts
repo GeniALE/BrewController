@@ -51,6 +51,14 @@ export const GetCurrentLatestGaugeValueDocument = gql`
   }
 }
     `;
+export const AddNewGaugeValueDocument = gql`
+    mutation AddNewGaugeValue($gaugeId: String!, $value: Float!) {
+  addGaugeValue(gaugeId: $gaugeId, value: $value) {
+    gaugeId
+    value
+  }
+}
+    `;
 export const GetGaugesDocument = gql`
     query GetGauges {
   gauges {

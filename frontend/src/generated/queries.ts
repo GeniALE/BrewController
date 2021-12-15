@@ -45,6 +45,14 @@ export type GetCurrentLatestGaugeValueQueryVariables = Types.Exact<{
 
 export type GetCurrentLatestGaugeValueQuery = { readonly __typename?: 'Query', readonly latestGaugeValue?: { readonly __typename?: 'GaugeValue', readonly id: string, readonly value: number } | null | undefined };
 
+export type AddNewGaugeValueMutationVariables = Types.Exact<{
+  gaugeId: Types.Scalars['String'];
+  value: Types.Scalars['Float'];
+}>;
+
+
+export type AddNewGaugeValueMutation = { readonly __typename?: 'Mutation', readonly addGaugeValue: { readonly __typename?: 'GaugeValue', readonly gaugeId: string, readonly value: number } };
+
 export type GetGaugesQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
 

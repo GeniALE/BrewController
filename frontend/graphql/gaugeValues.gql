@@ -11,3 +11,10 @@ query GetCurrentLatestGaugeValue($gaugeId: String!) {
     value
   }
 }
+
+mutation AddNewGaugeValue($gaugeId: String!, $value: Float!) {
+  addGaugeValue(gaugeId: $gaugeId, value: $value) {
+    gaugeId
+    value
+  }
+}
