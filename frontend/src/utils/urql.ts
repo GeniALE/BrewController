@@ -3,7 +3,10 @@ import { createClient, defaultExchanges, subscriptionExchange } from '@urql/svel
 import { SubscriptionClient } from 'subscriptions-transport-ws'
 import { devtoolsExchange } from '@urql/devtools'
 
-const wsClient = new SubscriptionClient('ws://localhost:5000/graphql', {
+const graphqlHostname = process.env.NODE_ENV !== 'development' ? window.location.host : 'localhost:5000'
+const [http, ws] = window.location.protocol.endsWith('s:') ? ['https', 'wss'] : ['http', 'ws']
+
+const wsClient = new SubscriptionClient(`${ws}://${graphqlHostname}/graphql`, {
   reconnect: true,
 })
 
@@ -23,7 +26,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const client = createClient({
-  url: 'http://localhost:5000/graphql',
+  url: `${http}://${graphqlHostname}/graphql`,
   exchanges,
 })
 
