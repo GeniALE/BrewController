@@ -7,47 +7,46 @@ using HotChocolate.Execution;
 using HotChocolate.Types;
 using MongoDB.Driver;
 
-namespace BrewController.Schema
+namespace BrewController.Schema;
+
+public partial class Query
 {
-    public partial class Query
+    public async Task<GaugeValue?> GetLatestGaugeValue(string gaugeId)
     {
-        public async Task<GaugeValue?> GetLatestGaugeValue(string gaugeId)
-        {
-            var filter = Builders<GaugeValue>.Filter.Eq("GaugeId", gaugeId);
-            return await this._database.GetGaugeValuesCollection().Find(filter).FirstAsync();
-        }
+        var filter = Builders<GaugeValue>.Filter.Eq("GaugeId", gaugeId);
+        return await this._database.GetGaugeValuesCollection().Find(filter).FirstAsync();
     }
+}
 
-    public partial class Mutation
+public partial class Mutation
+{
+    public async Task<GaugeValue> AddGaugeValue(string gaugeId, double value)
     {
-        public async Task<GaugeValue> AddGaugeValue(string gaugeId, double value)
+        var gaugeValue = new GaugeValue
         {
-            var gaugeValue = new GaugeValue
-            {
-                GaugeId = gaugeId,
-                Value = value,
-            };
+            GaugeId = gaugeId,
+            Value = value,
+        };
 
-            var topic = $"{gaugeId}_{nameof(Subscription.GetLatestGaugeValue)}";
+        var topic = $"{gaugeId}_{nameof(Subscription.GetLatestGaugeValue)}";
 
-            // todo: send shit to plc
+        // todo: send shit to plc
 
-            await this._database.GetGaugeValuesCollection().InsertOneAsync(gaugeValue);
-            await this._sender.SendAsync(topic, gaugeValue);
-            var gauge = await this._database.GetGaugesCollection().FindItemAsync(gaugeValue.GaugeId);
-            await this._brewLogger.AddUpdateLog($"Updated gauge {gauge.Name} value: {gaugeValue.Value}");
+        await this._database.GetGaugeValuesCollection().InsertOneAsync(gaugeValue);
+        await this._sender.SendAsync(topic, gaugeValue);
+        var gauge = await this._database.GetGaugesCollection().FindItemAsync(gaugeValue.GaugeId);
+        await this._brewLogger.AddUpdateLog($"Updated gauge {gauge.Name} value: {gaugeValue.Value}");
 
-            return gaugeValue;
-        }
+        return gaugeValue;
     }
+}
 
-    public partial class Subscription
+public partial class Subscription
+{
+    [SubscribeAndResolve]
+    public ValueTask<ISourceStream<GaugeValue>> GetLatestGaugeValue(string gaugeId)
     {
-        [SubscribeAndResolve]
-        public ValueTask<ISourceStream<GaugeValue>> GetLatestGaugeValue(string gaugeId)
-        {
-            var topic = $"{gaugeId}_{nameof(this.GetLatestGaugeValue)}";
-            return this._receiver.SubscribeAsync<string, GaugeValue>(topic);
-        }
+        var topic = $"{gaugeId}_{nameof(this.GetLatestGaugeValue)}";
+        return this._receiver.SubscribeAsync<string, GaugeValue>(topic);
     }
 }

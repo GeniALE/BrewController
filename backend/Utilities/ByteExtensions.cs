@@ -1,7 +1,6 @@
-﻿namespace BrewController.Utilities
+﻿namespace BrewController.Utilities;
+
+internal static class ByteExtensions
 {
-    internal static class ByteExtensions
-    {
-        public static bool GetBit(this byte b, int bitNumber) => ((b >> bitNumber) & 1) != 0;
-    }
+    public static bool GetBit(this byte b, int bitNumber) => ((b >> bitNumber) & 1) != 0;
 }

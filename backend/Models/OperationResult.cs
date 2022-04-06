@@ -1,7 +1,6 @@
-namespace BrewController.Models
+namespace BrewController.Models;
+
+public class OperationResult
 {
-    public class OperationResult
-    {
-        public bool Worked { get; set; }
-    }
+    public bool Worked { get; set; }
 }

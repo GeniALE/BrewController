@@ -6,36 +6,35 @@ using BrewController.Utilities;
 using HotChocolate.Execution;
 using HotChocolate.Types;
 
-namespace BrewController.Schema
+namespace BrewController.Schema;
+
+public partial class Mutation
 {
-    public partial class Mutation
+    public async Task<TogglerValue> AddTogglerValue(string togglerId, TogglerStatus status)
     {
-        public async Task<TogglerValue> AddTogglerValue(string togglerId, TogglerStatus status)
+        var togglerValue = new TogglerValue
         {
-            var togglerValue = new TogglerValue
-            {
-                TogglerId = togglerId,
-                Status = status,
-            };
+            TogglerId = togglerId,
+            Status = status,
+        };
 
-            var topic = $"{togglerId}_{nameof(Subscription.GetLatestTogglerValue)}";
+        var topic = $"{togglerId}_{nameof(Subscription.GetLatestTogglerValue)}";
 
-            await this._database.GetTogglerValuesCollection().InsertOneAsync(togglerValue);
-            await this._sender.SendAsync(topic, togglerValue);
-            var toggler = await this._database.GetTogglersCollection().FindItemAsync(togglerValue.TogglerId);
-            await this._brewLogger.AddUpdateLog($"Updated toggler {toggler.Name} status: {togglerValue.Status}");
+        await this._database.GetTogglerValuesCollection().InsertOneAsync(togglerValue);
+        await this._sender.SendAsync(topic, togglerValue);
+        var toggler = await this._database.GetTogglersCollection().FindItemAsync(togglerValue.TogglerId);
+        await this._brewLogger.AddUpdateLog($"Updated toggler {toggler.Name} status: {togglerValue.Status}");
 
-            return togglerValue;
-        }
+        return togglerValue;
     }
+}
 
-    public partial class Subscription
+public partial class Subscription
+{
+    [SubscribeAndResolve]
+    public ValueTask<ISourceStream<TogglerValue>> GetLatestTogglerValue(string togglerId)
     {
-        [SubscribeAndResolve]
-        public ValueTask<ISourceStream<TogglerValue>> GetLatestTogglerValue(string togglerId)
-        {
-            var topic = $"{togglerId}_{nameof(this.GetLatestTogglerValue)}";
-            return this._receiver.SubscribeAsync<string, TogglerValue>(topic);
-        }
+        var topic = $"{togglerId}_{nameof(this.GetLatestTogglerValue)}";
+        return this._receiver.SubscribeAsync<string, TogglerValue>(topic);
     }
 }

@@ -1,18 +1,17 @@
-namespace BrewController.Models.CategoryModels
+namespace BrewController.Models.CategoryModels;
+
+public class AddCategory
 {
-    public class AddCategory
-    {
-        public string Name { get; set; } = null!;
+    public string Name { get; set; } = null!;
 
-        public string Color { get; set; } = null!;
-    }
+    public string Color { get; set; } = null!;
+}
 
-    public partial class Category
+public partial class Category
+{
+    public Category(AddCategory addCategory)
     {
-        public Category(AddCategory addCategory)
-        {
-            this.Name = addCategory.Name;
-            this.Color = addCategory.Color;
-        }
+        this.Name = addCategory.Name;
+        this.Color = addCategory.Color;
     }
 }

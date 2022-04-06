@@ -1,7 +1,6 @@
-namespace BrewController.Models
+namespace BrewController.Models;
+
+public abstract class RankedMongoCollectionItem : MongoCollectionItem
 {
-    public abstract class RankedMongoCollectionItem : MongoCollectionItem
-    {
-        public string Rank { get; set; } = null!;
-    }
+    public string Rank { get; set; } = null!;
 }

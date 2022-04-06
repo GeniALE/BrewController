@@ -4,27 +4,26 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace BrewController
+namespace BrewController;
+
+public static class Program
 {
-    public static class Program
+    public static void Main(string[] args) => CreateHostBuilder(args).Build().Run();
+
+    private static IHostBuilder CreateHostBuilder(string[] args)
     {
-        public static void Main(string[] args) => CreateHostBuilder(args).Build().Run();
+        var builder = Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
 
-        private static IHostBuilder CreateHostBuilder(string[] args)
-        {
-            var builder = Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+        if (Environment.GetEnvironmentVariable("BREW_DISABLE_OPCUA") is null)
+            builder.ConfigureServices(services =>
+            {
+                services.AddHostedService<BrewListener>();
+            });
 
-            if (Environment.GetEnvironmentVariable("BREW_DISABLE_OPCUA") is null)
-                builder.ConfigureServices(services =>
-                {
-                    services.AddHostedService<BrewListener>();
-                });
-
-            return builder;
-        }
+        return builder;
     }
 }
